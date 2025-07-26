@@ -39,12 +39,12 @@ const Techs = () => {
       title: "React",
       style: "shadow-cyan-400",
     },
-    {
-      id: 5,
-      src: vue,
-      title: "Vue",
-      style: "shadow-emerald-500",
-    },
+    // {
+    //   id: 5,
+    //   src: vue,
+    //   title: "Vue",
+    //   style: "shadow-emerald-500",
+    // },
     {
       id: 6,
       src: tailwind,

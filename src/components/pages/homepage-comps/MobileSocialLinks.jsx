@@ -13,7 +13,7 @@ const MobileSocialLinks = () => {
                     <FaLinkedin size={20} /> LinkedIn
                 </>
             ),
-            href: 'https://www.linkedin.com/in/diegotellezc/',
+            href: 'https://www.linkedin.com/in/er-aditya-shekhawat-0b7625200/',
             style: 'rounded-tr-md'
         },
         {
