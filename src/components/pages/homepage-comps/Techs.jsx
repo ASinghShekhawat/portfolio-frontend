@@ -29,7 +29,7 @@ const Techs = () => {
     id: 1,
     src: java,
     title: "Java",
-    style: "shadow-[#007396]", // official Java blue
+    style: "shadow-blue-400", // official Java blue
   },
   {
     id: 2,
@@ -48,7 +48,7 @@ const Techs = () => {
   {
     id: 4,
     src: node,
-    title: "Node.js",
+    title: "Node JS",
     style: "shadow-green-400",
   },
 
@@ -99,7 +99,7 @@ const Techs = () => {
     id: 11,
     src: mysql,
     title: "MySQL",
-    style: "shadow-yellow-300",
+    style: "shadow-blue-400",
   },
 
   // 🤖 AI / LLMs
