@@ -23,7 +23,7 @@ const MobileSocialLinks = () => {
                     <FaGithub size={20} /> GitHub 
                 </>
             ),
-            href: 'https://github.com/diegotellezc'
+            href: 'https://github.com/ASinghShekhawat'
         },
         {
             id: 3,
@@ -32,7 +32,7 @@ const MobileSocialLinks = () => {
                     <HiOutlineMail size={20} /> Mail
                 </>
             ),
-            href: 'mailto:diegotellezdev@gmail.com'
+            href: 'mailto:adityashekhawat1706@gmail.com'
         },
         {
             id: 4,
@@ -41,7 +41,7 @@ const MobileSocialLinks = () => {
                     <BsFillPersonLinesFill size={20} /> Resume 
                 </>
             ),
-            href: '/FullStack_Developer_DiegoTellez.pdf',
+            href: '/FullStack_Developer_Aditya_Resume.pdf',
             style: 'rounded-br-md',
             download: true
         }

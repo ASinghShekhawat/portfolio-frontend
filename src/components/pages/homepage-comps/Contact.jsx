@@ -10,7 +10,7 @@ const Contact = () => {
 
         const formData = new FormData(event.target);
 
-        axios.post('https://getform.io/f/feff19e5-27a9-4f74-be5d-9699c4b245ed', formData)
+        axios.post('https://getform.io/f/bgdlxrea', formData)
             .then(response => {
                 Swal.fire({
                     icon: 'success',

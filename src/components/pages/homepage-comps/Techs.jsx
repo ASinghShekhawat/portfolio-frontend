@@ -11,83 +11,106 @@ import nextjs from "../../../assets/nextjs.png";
 import postgres from "../../../assets/postgres.png";
 import redux from "../../../assets/redux.png";
 import tailwind from "../../../assets/tailwind.png";
+import java from "../../../assets/java.png";
+import spring from "../../../assets/spring.png";
+import express from "../../../assets/express.png";
+import mysql from "../../../assets/mysql.png";
+import docker from "../../../assets/docker.png";
+import kubernetes from "../../../assets/kubernetes.png";
+import jenkins from "../../../assets/jenkins.png";
+import ai from "../../../assets/ai.png";
+
 import { Link as ScrollLink } from "react-scroll";
 
 const Techs = () => {
   const techs = [
-    {
-      id: 1,
-      src: html,
-      title: "HTML",
-      style: "shadow-orange-500",
-    },
-    {
-      id: 2,
-      src: css,
-      title: "CSS",
-      style: "shadow-blue-500",
-    },
-    {
-      id: 3,
-      src: javascript,
-      title: "JavaScript",
-      style: "shadow-yellow-400",
-    },
-    {
-      id: 4,
-      src: react,
-      title: "React",
-      style: "shadow-cyan-400",
-    },
-    // {
-    //   id: 5,
-    //   src: vue,
-    //   title: "Vue",
-    //   style: "shadow-emerald-500",
-    // },
-    {
-      id: 6,
-      src: tailwind,
-      title: "Tailwind CSS",
-      style: "shadow-cyan-700",
-    },
-    {
-      id: 7,
-      src: node,
-      title: "Node JS",
-      style: "shadow-lime-400",
-    },
-    {
-      id: 8,
-      src: nextjs,
-      title: "Next JS",
-      style: "shadow-white",
-    },
-    {
-      id: 9,
-      src: git,
-      title: "Git",
-      style: "shadow-orange-600",
-    },
-    {
-      id: 10,
-      src: github,
-      title: "GitHub",
-      style: "shadow-white",
-    },
-    {
-      id: 11,
-      src: postgres,
-      title: "PostgreSQL",
-      style: "shadow-blue-400",
-    },
-    {
-      id: 12,
-      src: redux,
-      title: "Redux",
-      style: "shadow-violet-700",
-    },
-  ];
+  // 🧠 Core Languages
+  {
+    id: 1,
+    src: java,
+    title: "Java",
+    style: "shadow-[#007396]", // official Java blue
+  },
+  {
+    id: 2,
+    src: javascript,
+    title: "JavaScript",
+    style: "shadow-yellow-400",
+  },
+
+  // 🚀 Backend Frameworks
+  {
+    id: 3,
+    src: spring,
+    title: "Spring",
+    style: "shadow-green-600",
+  },
+  {
+    id: 4,
+    src: node,
+    title: "Node.js",
+    style: "shadow-green-400",
+  },
+
+  // 🛠️ Dev Tools
+  {
+    id: 5,
+    src: git,
+    title: "Git",
+    style: "shadow-orange-500",
+  },
+
+  // 🚀 DevOps / CI-CD
+  {
+    id: 6,
+    src: docker,
+    title: "Docker",
+    style: "shadow-blue-300",
+  },
+  {
+    id: 7,
+    src: kubernetes,
+    title: "Kubernetes",
+    style: "shadow-blue-500",
+  },
+  {
+    id: 8,
+    src: jenkins,
+    title: "Jenkins",
+    style: "shadow-red-500",
+  },
+
+  // 🎨 Frontend
+  {
+    id: 9,
+    src: react,
+    title: "React",
+    style: "shadow-cyan-400",
+  },
+
+  // 🗄️ Databases
+  {
+    id: 10,
+    src: postgres,
+    title: "PostgreSQL",
+    style: "shadow-blue-400",
+  },
+  {
+    id: 11,
+    src: mysql,
+    title: "MySQL",
+    style: "shadow-yellow-300",
+  },
+
+  // 🤖 AI / LLMs
+  {
+    id: 12,
+    src: ai,
+    title: "AI & LLMs",
+    style: "shadow-purple-400",
+  },
+];
+
 
   return (
     <section
@@ -126,5 +149,6 @@ const Techs = () => {
     </section>
   );
 };
+
 
 export default Techs;
