@@ -1,5 +1,6 @@
 import React from 'react';
 import Slider from 'react-slick';
+import PropTypes from 'prop-types';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { Link as ScrollLink } from 'react-scroll';
@@ -77,6 +78,13 @@ const CertificateSlider = ({ certificates }) => {
         </section>
         
     );
+};
+CertificateSlider.propTypes = {
+    certificates: PropTypes.arrayOf(
+        PropTypes.shape({
+            image: PropTypes.string.isRequired,
+        })
+    ).isRequired,
 };
 
 export default CertificateSlider;

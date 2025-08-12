@@ -1,4 +1,4 @@
-import React from "react";
+import PropTypes from "prop-types";
 
 const CertificateModal = ({ selectedImage, setSelectedImage }) => {
   return (
@@ -23,6 +23,10 @@ const CertificateModal = ({ selectedImage, setSelectedImage }) => {
       </div>
     </div>
   );
+};
+CertificateModal.propTypes = {
+  selectedImage: PropTypes.string,
+  setSelectedImage: PropTypes.func.isRequired,
 };
 
 export default CertificateModal;

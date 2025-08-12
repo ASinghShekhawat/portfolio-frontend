@@ -1,19 +1,10 @@
-import React from "react";
-import html from "../../../assets/html.png";
-import css from "../../../assets/css.png";
 import javascript from "../../../assets/javascript.png";
 import react from "../../../assets/react.png";
-import vue from "../../../assets/vue.png";
 import git from "../../../assets/git.png";
-import github from "../../../assets/github.png";
 import node from "../../../assets/node.png";
-import nextjs from "../../../assets/nextjs.png";
 import postgres from "../../../assets/postgres.png";
-import redux from "../../../assets/redux.png";
-import tailwind from "../../../assets/tailwind.png";
 import java from "../../../assets/java.png";
 import spring from "../../../assets/spring.png";
-import express from "../../../assets/express.png";
 import mysql from "../../../assets/mysql.png";
 import docker from "../../../assets/docker.png";
 import kubernetes from "../../../assets/kubernetes.png";
@@ -122,7 +113,7 @@ const Techs = () => {
           <h2 className="text-4xl font-bold inline pb-1 border-b-4 border-primary-color/40 sm:text-5xl">
             Technologies
           </h2>
-          <p className="py-6">These are the technologies I've worked with</p>
+          <p className="py-6">These are the technologies I&#39;ve worked with</p>
         </div>
 
         <div className="w-full grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-8 text-center py-8 sm:px-0">
