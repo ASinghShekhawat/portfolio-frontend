@@ -1,68 +1,46 @@
-import React from "react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { HiOutlineMail } from "react-icons/hi";
-import { BsFillPersonLinesFill } from "react-icons/bs";
+
+const links = [
+  {
+    id: 1,
+    label: "LinkedIn",
+    icon: <FaLinkedin size={18} />,
+    href: "https://www.linkedin.com/in/er-aditya-shekhawat-0b7625200/",
+  },
+  {
+    id: 2,
+    label: "GitHub",
+    icon: <FaGithub size={18} />,
+    href: "https://github.com/ASinghShekhawat",
+  },
+  {
+    id: 3,
+    label: "Email",
+    icon: <HiOutlineMail size={18} />,
+    href: "mailto:adityashekhawat1706@gmail.com",
+  },
+];
 
 const MobileSocialLinks = () => {
-
-    const links = [
-        {
-            id: 1,
-            child: (
-                <>
-                    <FaLinkedin size={20} /> LinkedIn
-                </>
-            ),
-            href: 'https://www.linkedin.com/in/er-aditya-shekhawat-0b7625200/',
-            style: 'rounded-tr-md'
-        },
-        {
-            id: 2,
-            child: (
-                <>
-                    <FaGithub size={20} /> GitHub 
-                </>
-            ),
-            href: 'https://github.com/ASinghShekhawat'
-        },
-        {
-            id: 3,
-            child: (
-                <>
-                    <HiOutlineMail size={20} /> Mail
-                </>
-            ),
-            href: 'mailto:adityashekhawat1706@gmail.com'
-        },
-        {
-            id: 4,
-            child: (
-                <>
-                    <BsFillPersonLinesFill size={20} /> Resume 
-                </>
-            ),
-            href: '/FullStack_Developer_Aditya_Resume.pdf',
-            style: 'rounded-br-md',
-            download: true
-        }
-    ]
-
-    return (
-        <div className="flex mt-4 desktop:hidden">
-            <ul className="flex gap-2 flex-wrap justify-center">
-                {
-                    links.map(({id, child, href, style, download}) => (
-                        <li key={id} className={"flex items-center gap-2 w-28 h-9 px-4 bg-gradient-to-t from-green-400/50 to-primary-color/50 rounded-md" + " " + style }>
-                            <a href={href} className="flex gap-3 items-center w-full text-white text-sm" download={download} target="_blank" rel="noreferrer">
-                            {child}
-                            </a>
-                        </li>
-                    ))
-                }
-                
-            </ul>
-        </div>
-    );
+  return (
+    <ul className="flex desktop:hidden mt-6 gap-2">
+      {links.map(({ id, label, icon, href }) => (
+        <li key={id}>
+          <a
+            href={href}
+            target="_blank"
+            rel="noreferrer"
+            aria-label={label}
+            className="inline-flex items-center gap-2 px-3 py-2 rounded-md bg-ink-800/60 border border-white/10 text-fog-200 text-sm hover:text-accent-emerald hover:border-accent-emerald/50 transition-colors"
+          >
+            {icon}
+            <span className="font-medium">{label}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  );
 };
 
 export default MobileSocialLinks;

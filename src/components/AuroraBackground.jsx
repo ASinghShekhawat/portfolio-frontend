@@ -1,0 +1,52 @@
+/**
+ * Lightweight ambient background — three blurred gradient orbs plus a
+ * subtle grid overlay and noise texture. Replaces the previous particles
+ * background, which was heavy and ran on every route.
+ */
+const AuroraBackground = () => {
+  return (
+    <div
+      aria-hidden="true"
+      className="pointer-events-none fixed inset-0 -z-10 overflow-hidden bg-ink-950"
+    >
+      {/* Grid */}
+      <div
+        className="absolute inset-0 opacity-[0.18]"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)",
+          backgroundSize: "56px 56px",
+          maskImage:
+            "radial-gradient(ellipse 80% 60% at 50% 30%, #000 40%, transparent 100%)",
+          WebkitMaskImage:
+            "radial-gradient(ellipse 80% 60% at 50% 30%, #000 40%, transparent 100%)",
+        }}
+      />
+
+      {/* Orbs */}
+      <div className="absolute -top-32 -left-32 h-[40rem] w-[40rem] rounded-full bg-accent-emerald/15 blur-[120px] animate-pulse-glow" />
+      <div
+        className="absolute top-1/3 -right-40 h-[36rem] w-[36rem] rounded-full bg-accent-cyan/10 blur-[120px] animate-pulse-glow"
+        style={{ animationDelay: "1.5s" }}
+      />
+      <div
+        className="absolute bottom-0 left-1/3 h-[30rem] w-[30rem] rounded-full bg-accent-violet/10 blur-[120px] animate-pulse-glow"
+        style={{ animationDelay: "3s" }}
+      />
+
+      {/* Noise */}
+      <div className="absolute inset-0 bg-noise opacity-[0.5] mix-blend-overlay" />
+
+      {/* Vignette */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(ellipse at center, transparent 0%, transparent 50%, rgba(7,9,12,0.6) 100%)",
+        }}
+      />
+    </div>
+  );
+};
+
+export default AuroraBackground;

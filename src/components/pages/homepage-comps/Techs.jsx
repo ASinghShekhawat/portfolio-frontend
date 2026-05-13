@@ -1,6 +1,7 @@
+import { FiCode, FiServer, FiDatabase, FiCloud, FiShare2, FiCpu, FiActivity, FiCheckSquare, FiGlobe } from "react-icons/fi";
+
 import javascript from "../../../assets/javascript.png";
 import react from "../../../assets/react.png";
-import git from "../../../assets/git.png";
 import node from "../../../assets/node.png";
 import postgres from "../../../assets/postgres.png";
 import java from "../../../assets/java.png";
@@ -9,137 +10,168 @@ import mysql from "../../../assets/mysql.png";
 import docker from "../../../assets/docker.png";
 import kubernetes from "../../../assets/kubernetes.png";
 import jenkins from "../../../assets/jenkins.png";
-import ai from "../../../assets/ai.png";
 
-import { Link as ScrollLink } from "react-scroll";
+import Reveal from "../../motion/Reveal";
+import Stagger, { StaggerItem } from "../../motion/Stagger";
 
-const Techs = () => {
-  const techs = [
-  // 🧠 Core Languages
-  {
-    id: 1,
-    src: java,
-    title: "Java",
-    style: "shadow-blue-400", // official Java blue
-  },
-  {
-    id: 2,
-    src: javascript,
-    title: "JavaScript",
-    style: "shadow-yellow-400",
-  },
+const iconMap = {
+  Java: java,
+  JavaScript: javascript,
+  "Spring Boot": spring,
+  "Node.js": node,
+  React: react,
+  PostgreSQL: postgres,
+  MySQL: mysql,
+  Docker: docker,
+  Kubernetes: kubernetes,
+  Jenkins: jenkins,
+};
 
-  // 🚀 Backend Frameworks
+const groups = [
   {
-    id: 3,
-    src: spring,
-    title: "Spring",
-    style: "shadow-green-600",
+    title: "Languages",
+    icon: FiCode,
+    items: ["Java", "Python", "JavaScript", "TypeScript", "SQL", "C++"],
   },
   {
-    id: 4,
-    src: node,
-    title: "Node JS",
-    style: "shadow-green-400",
-  },
-
-  // 🛠️ Dev Tools
-  {
-    id: 5,
-    src: git,
-    title: "Git",
-    style: "shadow-orange-500",
-  },
-
-  // 🚀 DevOps / CI-CD
-  {
-    id: 6,
-    src: docker,
-    title: "Docker",
-    style: "shadow-blue-300",
+    title: "Backend",
+    icon: FiServer,
+    items: [
+      "Spring Boot",
+      "Spring Security",
+      "WebFlux",
+      "Node.js",
+      "Express",
+      "NestJS",
+      "REST",
+      "GraphQL",
+    ],
   },
   {
-    id: 7,
-    src: kubernetes,
-    title: "Kubernetes",
-    style: "shadow-blue-500",
+    title: "Databases",
+    icon: FiDatabase,
+    items: [
+      "PostgreSQL",
+      "MySQL",
+      "MongoDB",
+      "Redis",
+      "DynamoDB",
+      "FAISS (vector)",
+    ],
   },
   {
-    id: 8,
-    src: jenkins,
-    title: "Jenkins",
-    style: "shadow-red-500",
-  },
-
-  // 🎨 Frontend
-  {
-    id: 9,
-    src: react,
-    title: "React",
-    style: "shadow-cyan-400",
-  },
-
-  // 🗄️ Databases
-  {
-    id: 10,
-    src: postgres,
-    title: "PostgreSQL",
-    style: "shadow-blue-400",
+    title: "Cloud & Infra",
+    icon: FiCloud,
+    items: [
+      "AWS · S3 · SQS · Lambda · CloudWatch · IAM",
+      "Docker",
+      "Kubernetes · Helm · k9s",
+      "Azure",
+      "GCP",
+    ],
   },
   {
-    id: 11,
-    src: mysql,
-    title: "MySQL",
-    style: "shadow-blue-400",
+    title: "Messaging",
+    icon: FiShare2,
+    items: ["Kafka", "RabbitMQ", "BullMQ", "DLQ", "Backpressure"],
   },
-
-  // 🤖 AI / LLMs
   {
-    id: 12,
-    src: ai,
-    title: "AI & LLMs",
-    style: "shadow-purple-400",
+    title: "AI / LLM",
+    icon: FiCpu,
+    items: [
+      "OpenAI",
+      "Anthropic",
+      "LangChain",
+      "RAG pipelines",
+      "Embeddings",
+      "Agentic orchestration",
+    ],
+  },
+  {
+    title: "Observability",
+    icon: FiActivity,
+    items: ["Prometheus", "Grafana", "OpenTelemetry", "CloudWatch"],
+  },
+  {
+    title: "Testing & CI/CD",
+    icon: FiCheckSquare,
+    items: ["TDD", "JUnit", "Mockito", "Jest", "Jenkins", "GitHub Actions"],
+  },
+  {
+    title: "Networking",
+    icon: FiGlobe,
+    items: ["HTTP/S", "TCP/IP", "UDP", "DNS", "WebSockets"],
   },
 ];
 
-
+const Techs = () => {
   return (
     <section
       name="Technologies"
-      className="relative w-full md:h-screen h-unset"
+      id="Technologies"
+      className="relative w-full py-24 md:py-32"
     >
-      <div className="max-w-screen-lg mx-auto p-4 flex flex-col justify-center w-full h-full text-white">
-        <div>
-          <h2 className="text-4xl font-bold inline pb-1 border-b-4 border-primary-color/40 sm:text-5xl">
-            Technologies
+      <div className="container-wide">
+        <Reveal>
+          <p className="section-eyebrow">Toolbox</p>
+        </Reveal>
+        <Reveal delay={0.05}>
+          <h2 className="section-heading mt-3">
+            Technologies I <span className="text-gradient">work with</span>
           </h2>
-          <p className="py-6">These are the technologies I&#39;ve worked with</p>
-        </div>
+        </Reveal>
+        <Reveal delay={0.1}>
+          <p className="mt-3 max-w-xl text-fog-300">
+            Picked for the job, not for the resume.
+          </p>
+        </Reveal>
 
-        <div className="w-full grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-8 text-center py-8 sm:px-0">
-          {techs.map(({ id, src, title, style }) => (
-            <div
-              key={id}
-              className={`flex flex-col justify-between shadow-md hover:scale-105 duration-500 py-2 rounded-lg ${style}`}
+        <Stagger
+          stagger={0.06}
+          className="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-4"
+        >
+          {groups.map(({ title, icon: Icon, items }) => (
+            <StaggerItem
+              key={title}
+              className="card-surface p-6 hover:border-accent-emerald/30 hover:shadow-card-hover transition-all duration-500"
             >
-              <img className="w-20 mx-auto py-2 md:py-4" src={src} alt="" />
-              <p className="mt-4 md:mt-2">{title}</p>
-            </div>
+              <div className="flex items-center gap-3">
+                <span className="inline-grid h-9 w-9 place-items-center rounded-lg bg-gradient-brand-soft border border-accent-emerald/30 text-accent-emerald">
+                  <Icon size={16} />
+                </span>
+                <h3 className="font-mono text-xs uppercase tracking-widest text-fog-200">
+                  {title}
+                </h3>
+              </div>
+              <ul className="mt-5 flex flex-wrap gap-1.5">
+                {items.map((item) => {
+                  const key = item.split(" ·")[0];
+                  const icon = iconMap[key];
+                  return (
+                    <li
+                      key={item}
+                      className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-ink-700/50 border border-white/5 text-fog-100 text-xs"
+                    >
+                      {icon && (
+                        <img
+                          src={icon}
+                          alt=""
+                          aria-hidden="true"
+                          loading="lazy"
+                          className="h-3.5 w-3.5 object-contain"
+                        />
+                      )}
+                      <span>{item}</span>
+                    </li>
+                  );
+                })}
+              </ul>
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
       </div>
-
-      <ScrollLink
-        to="Education"
-        smooth
-        duration={500}
-        className="absolute bottom-2 -left-full md:left-1/2 md:-translate-x-1/2 cursor-pointer hover:text-primary-color"
-      >
-        <i className="bx bx-chevron-down text-7xl text-gray-400 animate-bounce font hover:text-primary-color"></i>
-      </ScrollLink>
     </section>
   );
 };
-
 
 export default Techs;

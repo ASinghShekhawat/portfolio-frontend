@@ -11,5 +11,9 @@ module.exports = {
   plugins: ['react-refresh'],
   rules: {
     'react-refresh/only-export-components': 'warn',
+    // Codebase doesn't use PropTypes consistently; rely on usage sites.
+    'react/prop-types': 'off',
+    // Allow lowercase HTML img attribute used by modern browsers.
+    'react/no-unknown-property': ['error', { ignore: ['fetchpriority'] }],
   },
 }

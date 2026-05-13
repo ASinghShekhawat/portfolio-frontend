@@ -1,35 +1,89 @@
-import React from 'react'
-import { Link as ScrollLink } from 'react-scroll';
+import { motion } from "framer-motion";
+import Reveal from "../../motion/Reveal";
 
 const AboutSectionAbout = () => {
-    return (
-        <section name="About" className='relative w-full h-screen'>
+  return (
+    <section
+      name="About"
+      className="relative w-full min-h-screen flex items-center pt-24 pb-16"
+    >
+      <div className="container-wide grid lg:grid-cols-[1fr_1.2fr] gap-10 lg:gap-16 items-center">
+        <Reveal direction="right">
+          <div className="relative mx-auto w-full max-w-md aspect-[4/5] rounded-2xl overflow-hidden border border-white/10 shadow-card">
+            <img
+              src="/images/profile_1.webp"
+              alt="Portrait of Aditya Shekhawat"
+              loading="eager"
+              className="h-full w-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-ink-950/70 via-transparent to-transparent" />
+            <motion.div
+              aria-hidden="true"
+              className="absolute -inset-2 -z-10 rounded-3xl bg-gradient-brand opacity-30 blur-3xl"
+              animate={{ opacity: [0.2, 0.4, 0.2] }}
+              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+            />
+          </div>
+        </Reveal>
 
-            <div className='max-w-screen-lg mx-auto flex flex-col items-center justify-center h-full px-4 py-16 md:py-24 lg:py-0 lg:flex-row lg:gap-8'>
-                
-                <div className='flex mt-8 md:mt-0'>
-                    <img src="/images/profile_1.webp" alt="My profile" className='rounded-2xl mx-auto w-2/3 max-w-lg md:max-w-sm object-cover md:w-[70rem] shadow-2xl shadow-primary-color/20' style={{ filter: 'drop-shadow(0px -4px 4px rgba(0, 255, 0, 0.5))' }} />
-                </div>
+        <div className="space-y-6">
+          <Reveal>
+            <p className="section-eyebrow">Hi, I&rsquo;m Aditya</p>
+          </Reveal>
+          <Reveal delay={0.05}>
+            <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-fog-50 leading-[1.05]">
+              Backend engineer, shipping{" "}
+              <span className="text-gradient">since 2023</span>.
+            </h1>
+          </Reveal>
+          <Reveal delay={0.12}>
+            <p className="text-fog-300 text-base md:text-lg leading-relaxed">
+              I graduated from{" "}
+              <span className="text-fog-100 font-medium">
+                MBM University, Jodhpur
+              </span>{" "}
+              in 2023 with a B.Tech in Computer Science (8.5 CGPA). For 3+
+              years since, I&rsquo;ve been deep in cloud-native backend
+              systems — currently as a{" "}
+              <span className="text-accent-emerald font-medium">
+                Software Engineer I on the backend team at BrowserStack
+              </span>
+              , owning multi-agent LLM pipelines and async queue
+              infrastructure processing 10,000+ ops/day at 99.9% reliability.
+            </p>
+          </Reveal>
+          <Reveal delay={0.2}>
+            <p className="text-fog-300 text-base md:text-lg leading-relaxed">
+              Before BrowserStack, I spent ~18 months at{" "}
+              <span className="text-fog-100 font-medium">Kanerika Software</span>{" "}
+              owning end-to-end delivery of an internal data-visualization
+              product — Spring Boot APIs over PostgreSQL serving 50+
+              concurrent users at p95 &lt;200ms, with React/Redux on the
+              frontend and zero-downtime CI/CD on GitHub Actions.
+            </p>
+          </Reveal>
+          <Reveal delay={0.28}>
+            <p className="text-fog-300 text-base md:text-lg leading-relaxed">
+              I work across <span className="text-fog-100 font-medium">Java</span>,
+              {" "}<span className="text-fog-100 font-medium">Node.js</span>, and
+              {" "}<span className="text-fog-100 font-medium">Python</span>{" "}
+              — comfortable with AWS, Kubernetes, Kafka, Redis, and the rest
+              of the modern backend stack. I care about system design,
+              observability (Prometheus, Grafana, OpenTelemetry), and
+              writing software that holds up when traffic actually shows up.
+            </p>
+          </Reveal>
+          <Reveal delay={0.36}>
+            <p className="text-fog-300 text-base md:text-lg leading-relaxed">
+              Outside of work I&rsquo;m usually digging into RAG pipelines,
+              distributed primitives (token buckets, consensus, replication),
+              or breaking down the design patterns behind systems I admire.
+            </p>
+          </Reveal>
+        </div>
+      </div>
+    </section>
+  );
+};
 
-                <div className='flex flex-col justify-center items-center h-[85%] md:h-full'>
-                    
-                    <h1 className='text-4xl md:text-5xl font-bold text-white mb-2 md:mb-4'>Who I am?</h1>
-
-                    <div className='flex items-center bg-primary-color/20 rounded-md py-2 px-4'>
-                        {/* <img className='h-[30px] w-auto mr-2' src="/icons/colombia.png" alt="" /> */}
-                        <h2 className='text-lg sm:text-xl md:text-2xl md:py-1 font-semibold text-white'>🚀 Turning Ideas into Code since 2022</h2>
-                    </div>
-                    
-                    <p className='text-md md:text-lg text-gray-300 py-4 max-x-md text-justify'>I am a software engineer, graduated from M.B.M University, India. For the past two years, I’ve been immersed in the fast-paced world of full-stack development. I currently work at "Browserstack", a leading platform trusted by developers and QA teams globally, with a strong presence across multiple countries.</p>
-                    <p className='text-md md:text-lg text-gray-300 max-x-md text-justify'>This experience has given me incredible opportunities to collaborate with diverse teams and shoulder substantial responsibilities. As the last line of defense before content went live, I honed my skills in working effectively with large teams and ensuring top-notch results.</p>
-                </div>
-            </div>
-
-            <ScrollLink to="Edition" smooth duration={500} className='absolute bottom-2 -left-full md:left-1/2 md:-translate-x-1/2 cursor-pointer hover:text-primary-color'>
-                <i className='bx bx-chevron-down text-7xl text-gray-400 animate-bounce font hover:text-primary-color'></i>
-            </ScrollLink>
-        </section>
-    );
-}
-
-export default AboutSectionAbout
+export default AboutSectionAbout;

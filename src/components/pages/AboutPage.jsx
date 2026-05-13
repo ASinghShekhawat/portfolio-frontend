@@ -1,28 +1,41 @@
-import React, { useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import NavbarVideos from '../pages/aboutpage-comps/NavBarVideos'
-import AboutSectionAbout from '../pages/aboutpage-comps/AboutSectionAbout'
+import { useEffect } from "react";
+import { Link } from "react-router-dom";
+import { FiArrowLeft } from "react-icons/fi";
+import AboutSectionAbout from "./aboutpage-comps/AboutSectionAbout";
 
 const AboutPage = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
-    useEffect(() => {
-        window.scrollTo(0, 0);
-    }, [])
+  return (
+    <>
+      <header className="fixed top-0 left-0 right-0 z-50 bg-ink-950/80 backdrop-blur-xl border-b border-white/5">
+        <nav
+          aria-label="Primary"
+          className="container-wide flex h-16 md:h-20 items-center justify-between"
+        >
+          <Link to="/" className="flex items-center gap-2">
+            <span className="grid h-9 w-9 place-items-center rounded-lg bg-gradient-brand text-ink-950 font-display font-bold text-base shadow-glow">
+              A
+            </span>
+            <span className="hidden sm:block font-display font-semibold text-fog-50 tracking-tight">
+              Aditya<span className="text-accent-emerald">.</span>
+            </span>
+          </Link>
 
-    return (
-        <>
-            <NavbarVideos />
-            <AboutSectionAbout />
+          <Link
+            to="/"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-md border border-white/10 text-fog-100 text-sm hover:border-accent-emerald/60 hover:text-accent-emerald transition-colors"
+          >
+            <FiArrowLeft size={16} /> Back home
+          </Link>
+        </nav>
+      </header>
 
-            <div className='relative flex justify-center'>
-                <Link to='/' className='text-black font-semibold text-[16px] w-fit px-6 py-3 my-2 flex items-center rounded-md bg-gradient-to-t from-green-400 to-primary-color cursor-pointer mx-auto md:mx-0 self-end hover:scale-110 duration-300 mb-10'>
-                    <span className=''><i className='bx bx-home-heart mr-2'></i></span>
-                    Go back
-                </Link>
-            </div>
+      <AboutSectionAbout />
+    </>
+  );
+};
 
-        </>
-    )
-}
-
-export default AboutPage
+export default AboutPage;

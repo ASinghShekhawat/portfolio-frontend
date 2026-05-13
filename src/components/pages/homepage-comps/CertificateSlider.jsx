@@ -1,90 +1,104 @@
-import React from 'react';
-import Slider from 'react-slick';
-import PropTypes from 'prop-types';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import { Link as ScrollLink } from 'react-scroll';
-import CertificateModal from './CertificateModal';
+import { useState } from "react";
+import Slider from "react-slick";
+import PropTypes from "prop-types";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import CertificateModal from "./CertificateModal";
+import Reveal from "../../motion/Reveal";
 
 const CertificateSlider = ({ certificates }) => {
-    const [selectedImage, setSelectedImage] = React.useState(null);
+  const [selectedImage, setSelectedImage] = useState(null);
 
-    const settings = {
-        dots: true,
-        infinite: false,
-        speed: 500,
-        slidesToScroll: 1,
-        draggable: true,
-        rows: 2,
-        responsive: [{
-            breakpoint: 3000,
-            settings: {
-                slidesToShow: 3,
-                infinite: true
-                }
-        
-            }, {
-        
-                breakpoint: 800,
-                settings: {
-                slidesToShow: 2,
-                dots: true
-                }
-        
-            },{
-        
-                breakpoint: 600,
-                settings: {
-                slidesToShow: 1,
-                dots: true
-                }
-        
-            }, {
-        
-                breakpoint: 280,
-                settings: "unslick" // destroys slick
-        
-            }]
-    };
+  const settings = {
+    dots: true,
+    infinite: false,
+    speed: 500,
+    slidesToScroll: 1,
+    draggable: true,
+    arrows: false,
+    rows: 2,
+    responsive: [
+      { breakpoint: 3000, settings: { slidesToShow: 3, infinite: true } },
+      { breakpoint: 800, settings: { slidesToShow: 2, dots: true } },
+      { breakpoint: 600, settings: { slidesToShow: 1, dots: true } },
+      { breakpoint: 280, settings: "unslick" },
+    ],
+  };
 
-    const openCertificateModal = (image) => {
-        setSelectedImage(image);
-    };
-    
+  return (
+    <section
+      name="Education"
+      id="Education"
+      className="relative w-full py-24 md:py-32 text-white"
+    >
+      <div className="container-wide">
+        <Reveal>
+          <p className="section-eyebrow">Education</p>
+        </Reveal>
+        <Reveal delay={0.05}>
+          <h2 className="section-heading mt-3">
+            Certifications &amp;{" "}
+            <span className="text-gradient">credentials</span>
+          </h2>
+        </Reveal>
+        <Reveal delay={0.1}>
+          <p className="mt-3 max-w-xl text-fog-300">
+            A snapshot of formal training I&rsquo;ve completed along the way.
+          </p>
+        </Reveal>
 
-    return (
-        <section name='Education' className='relative w-full h-unset md:h-screen text-white'>
-            <div className='max-w-screen-lg p-4 mx-auto flex flex-col justify-center w-full h-full'>
+        <Reveal delay={0.15} className="mt-12">
+          <Slider {...settings} className="cert-slider -mx-2">
+            {certificates.map((certificate, index) => (
+              <div key={index} className="px-2 pb-3">
+                <button
+                  type="button"
+                  onClick={() => setSelectedImage(certificate.image)}
+                  className="group block w-full overflow-hidden rounded-xl border border-white/5 bg-ink-800/60 hover:border-accent-emerald/30 hover:shadow-card-hover transition-all duration-500 cursor-zoom-in"
+                  aria-label="View certificate"
+                >
+                  <div className="aspect-[4/3] overflow-hidden">
+                    <img
+                      src={certificate.image}
+                      alt="Certificate"
+                      loading="lazy"
+                      decoding="async"
+                      className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                    />
+                  </div>
+                </button>
+              </div>
+            ))}
+          </Slider>
+        </Reveal>
+      </div>
 
-                <div className='mb-2'>
-                    <h2 className='text-4xl font-bold inline border-b-4 border-primary-color/40 sm:text-5xl pb-1'>Education</h2>
-                    <p className='py-6'>Check out some of my certificates</p>
-                </div>
+      <CertificateModal
+        selectedImage={selectedImage}
+        setSelectedImage={setSelectedImage}
+      />
 
-                <Slider {...settings} className="grid w-[90%] lg:w-full mx-auto">
-                    {certificates.map((certificate, index) => (
-                    <div onClick={() => openCertificateModal(certificate.image)} key={index} className="p-4 cursor-zoom-in">
-                        <img src={certificate.image} alt="Certificate}" className="mx-auto w-full h-[200px] lg:h-[220px] rounded-md object-contain" />
-                    </div>
-                ))}
-                </Slider>
-            </div>
-
-            <ScrollLink to="Contact" smooth duration={500} className='absolute bottom-2 -left-full md:left-1/2 md:-translate-x-1/2 cursor-pointer hover:text-primary-color'>
-                <i className='bx bx-chevron-down text-7xl text-gray-400 animate-bounce font hover:text-primary-color'></i>
-            </ScrollLink>
-
-            <CertificateModal selectedImage={selectedImage} setSelectedImage={setSelectedImage} />
-        </section>
-        
-    );
+      {/* Light styling overrides for slick dots */}
+      <style>{`
+        .cert-slider .slick-dots li button:before {
+          color: #6B7785;
+          opacity: 0.5;
+          font-size: 8px;
+        }
+        .cert-slider .slick-dots li.slick-active button:before {
+          color: #0DFC4B;
+          opacity: 1;
+        }
+        .cert-slider .slick-dots { bottom: -28px; }
+      `}</style>
+    </section>
+  );
 };
+
 CertificateSlider.propTypes = {
-    certificates: PropTypes.arrayOf(
-        PropTypes.shape({
-            image: PropTypes.string.isRequired,
-        })
-    ).isRequired,
+  certificates: PropTypes.arrayOf(
+    PropTypes.shape({ image: PropTypes.string.isRequired })
+  ).isRequired,
 };
 
 export default CertificateSlider;

@@ -1,38 +1,40 @@
-import { useEffect } from 'react'
-import Navbar from "./homepage-comps/Navbar"
-import Home from "./homepage-comps/Home"
-import About from "./homepage-comps/About"
-import MyProjects from "./homepage-comps/MyProjects"
-import Techs from "./homepage-comps/Techs"
-import Contact from "./homepage-comps/Contact"
-import CertificateSlider from './homepage-comps/CertificateSlider'
+import { useEffect } from "react";
+import Navbar from "./homepage-comps/Navbar";
+import Home from "./homepage-comps/Home";
+import About from "./homepage-comps/About";
+import Experience from "./homepage-comps/Experience";
+import MyProjects from "./homepage-comps/MyProjects";
+import Techs from "./homepage-comps/Techs";
+import Contact from "./homepage-comps/Contact";
+import CertificateSlider from "./homepage-comps/CertificateSlider";
+
+const certificates = [
+  { image: "/images/certificates/rag.webp" },
+  { image: "/images/certificates/filtering.webp" },
+  { image: "/images/certificates/prompt.webp" },
+  { image: "/images/certificates/kubernetes.webp" },
+  { image: "/images/certificates/docker.webp" },
+  { image: "/images/certificates/bull.webp" },
+  { image: "/images/certificates/vector.webp" },
+];
 
 const HomePage = () => {
-    const certificates = [
-        {image: '/images/certificates/rag.webp'},
-        {image: '/images/certificates/filtering.webp'},
-        {image: '/images/certificates/prompt.webp'},
-        {image: '/images/certificates/kubernetes.webp'},
-        {image: '/images/certificates/docker.webp'},
-        {image: '/images/certificates/bull.webp'},
-        {image: '/images/certificates/vector.webp'}      
-    ];
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
-    useEffect(() => {
-        window.scrollTo(0, 0);
-    }, [])
+  return (
+    <>
+      <Navbar />
+      <Home />
+      <About />
+      <Experience />
+      <MyProjects />
+      <Techs />
+      <CertificateSlider certificates={certificates} />
+      <Contact />
+    </>
+  );
+};
 
-    return (
-        <>
-            <Navbar />
-            <Home />
-            <About />
-            <MyProjects />
-            <Techs />
-            <CertificateSlider certificates={certificates} />
-            <Contact />
-        </>
-    )
-}
-
-export default HomePage
+export default HomePage;

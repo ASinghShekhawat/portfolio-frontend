@@ -1,70 +1,93 @@
-import React, { useState } from "react";
-import { Link as ScrollLink } from "react-scroll";
-import { Link } from "react-router-dom";
+import { useState } from "react";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { ModalInfo } from "../../ModalInfo";
 import ProjectCard from "../../ProjectCard";
 import projects from "../../../utils/constants";
+import Reveal from "../../motion/Reveal";
+import Stagger, { StaggerItem } from "../../motion/Stagger";
 
 const MyProjects = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [SelectedProject, setSelectedProject] = useState({});
+  const [selectedProject, setSelectedProject] = useState({});
 
   const handleModalInfo = (project) => {
-    setModalIsOpen(true);
     setSelectedProject(project);
+    setModalIsOpen(true);
   };
 
-  const closeModal = () => {
-    setModalIsOpen(false);
-  };
+  const closeModal = () => setModalIsOpen(false);
 
   return (
     <section
       name="Projects"
-      className="relative w-full text-white md:h-screen h-unset"
+      id="Projects"
+      className="relative w-full py-24 md:py-32"
     >
-      <div className="max-w-screen-lg p-4 mx-auto flex flex-col justify-center w-full h-full">
-        <div className="mb-4">
-          <h2 className="text-4xl font-bold inline border-b-4 border-primary-color/40 sm:text-5xl pb-1">
-            Projects
-          </h2>
-          <p className="py-6">Check out some of my work here</p>
+      <div className="container-wide">
+        <div className="flex flex-wrap items-end justify-between gap-6">
+          <div>
+            <Reveal>
+              <p className="section-eyebrow">Selected work</p>
+            </Reveal>
+            <Reveal delay={0.05}>
+              <h2 className="section-heading mt-3">
+                Projects I&rsquo;ve{" "}
+                <span className="text-gradient">shipped</span>
+              </h2>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <p className="mt-3 max-w-xl text-fog-300">
+                A mix of product builds, side experiments, and learning
+                exercises. Tap any card for a quick case-study.
+              </p>
+            </Reveal>
+          </div>
+
+          <Reveal delay={0.15}>
+            <a
+              href="https://github.com/ASinghShekhawat"
+              target="_blank"
+              rel="noreferrer"
+              className="group hidden sm:inline-flex items-center gap-1 font-mono text-xs uppercase tracking-widest text-fog-200 hover:text-accent-emerald transition-colors"
+            >
+              More on GitHub
+              <MdOutlineKeyboardArrowRight
+                size={18}
+                className="transition-transform group-hover:translate-x-1"
+              />
+            </a>
+          </Reveal>
         </div>
 
-        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-8 mb-6">
+        <Stagger className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-12 auto-rows-fr">
           {projects.map((project) => (
-            <ProjectCard
-              key={project.id}
-              project={project}
-              setSelectedProject={setSelectedProject}
-              handleModalInfo={handleModalInfo}
-            />
+            <StaggerItem key={project.id} className="h-full">
+              <ProjectCard
+                project={project}
+                handleModalInfo={handleModalInfo}
+              />
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
 
-        <div className="flex justify-end mr-4">
-          <Link
-            to="projects"
-            className="hover:underline hover:underline-offset-4 hover:text-primary-color/60 cursor-pointer text-gray-300 flex items-center"
+        <div className="mt-10 flex sm:hidden justify-center">
+          <a
+            href="https://github.com/ASinghShekhawat"
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-1 font-mono text-xs uppercase tracking-widest text-fog-200 hover:text-accent-emerald transition-colors"
           >
-            See more projects
-            <MdOutlineKeyboardArrowRight size={20} />
-          </Link>
+            More on GitHub
+            <MdOutlineKeyboardArrowRight size={18} />
+          </a>
         </div>
       </div>
 
-      <ScrollLink
-        to="Technologies"
-        smooth
-        duration={500}
-        className="absolute bottom-2 -left-full md:left-1/2 md:-translate-x-1/2 cursor-pointer hover:text-primary-color"
-      >
-        <i className="bx bx-chevron-down text-7xl text-gray-400 animate-bounce font hover:text-primary-color"></i>
-      </ScrollLink>
-
       {modalIsOpen && (
-        <ModalInfo SelectedProject={SelectedProject} closeModal={closeModal} />
+        <ModalInfo
+          SelectedProject={selectedProject}
+          closeModal={closeModal}
+        />
       )}
     </section>
   );

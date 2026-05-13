@@ -1,6 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
-@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Raleway:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -8,23 +6,99 @@
 
 @layer base {
     html {
-        font-family: 'Raleway', sans-serif;
+        font-family: 'Raleway', system-ui, sans-serif;
+        scroll-behavior: smooth;
+        background-color: #07090C;
+        color-scheme: dark;
+    }
+
+    body {
+        background-color: #07090C;
+        color: #F5F7FA;
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+    }
+
+    ::selection {
+        background-color: rgba(13, 252, 75, 0.35);
+        color: #07090C;
+    }
+
+    /* Focus rings */
+    :focus-visible {
+        outline: 2px solid #0DFC4B;
+        outline-offset: 3px;
+        border-radius: 4px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+            animation-duration: 0.001ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.001ms !important;
+            scroll-behavior: auto !important;
+        }
+    }
+}
+
+@layer components {
+    .container-wide {
+        @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8;
+    }
+
+    .text-gradient {
+        background: linear-gradient(135deg, #0DFC4B 0%, #06D6F4 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
+
+    .section-heading {
+        @apply font-display text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-fog-50;
+    }
+
+    .section-eyebrow {
+        @apply inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-accent-emerald;
+    }
+
+    .section-eyebrow::before {
+        content: "";
+        @apply inline-block h-px w-8 bg-accent-emerald/70;
     }
 
     .modalCard {
-    box-shadow: 0 0 1rem 0 #86ff4b87;
+        box-shadow: 0 0 1rem 0 #86ff4b87;
+    }
+
+    .glass {
+        background: rgba(15, 20, 25, 0.6);
+        backdrop-filter: blur(14px) saturate(140%);
+        -webkit-backdrop-filter: blur(14px) saturate(140%);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .card-surface {
+        @apply relative overflow-hidden rounded-2xl bg-ink-800/60 border border-white/5 backdrop-blur-sm;
+    }
+
+    .ring-brand {
+        @apply ring-1 ring-accent-emerald/20;
+    }
 }
+
+@layer utilities {
+    .h-screen-safe {
+        min-height: 100vh;
+        min-height: 100svh;
+    }
 
     @media (max-height: 620px) {
         .h-unset {
-            height: unset !important; 
+            height: unset !important;
         }
-
         .miniModal {
             height: 300px !important;
             width: auto !important;
         }
     }
-    
-
 }

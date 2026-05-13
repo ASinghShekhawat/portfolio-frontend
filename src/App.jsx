@@ -1,35 +1,30 @@
-import ParticlesBackground from "./components/ParticlesBackground"
-import { Route, Routes } from "react-router-dom"
-import AboutPage from "./components/pages/AboutPage"
-import HomePage from "./components/pages/HomePage"
-import SocialLinks from "./components/SocialLinks"
-import GeneralFooter from "./components/GeneralFooter"
-import AllProjectsPage from "./components/pages/AllProjectsPage"
-import AllTechsPage from "./components/pages/AllTechsPage"
+import { lazy, Suspense } from "react";
+import { Route, Routes } from "react-router-dom";
+import AuroraBackground from "./components/AuroraBackground";
+import HomePage from "./components/pages/HomePage";
+import SocialLinks from "./components/SocialLinks";
+import GeneralFooter from "./components/GeneralFooter";
+
+const AboutPage = lazy(() => import("./components/pages/AboutPage"));
 
 function App() {
-
   return (
     <>
-      <ParticlesBackground />
+      <AuroraBackground />
       <SocialLinks />
-      
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        
-        <Route path="/about-me" element={<AboutPage />}/>
 
-        <Route path="/projects" element={<AllProjectsPage />}/>
-
-        <Route path="/technologies" element={<AllTechsPage />}/>
-
-      </Routes>
+      <main>
+        <Suspense fallback={null}>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/about-me" element={<AboutPage />} />
+          </Routes>
+        </Suspense>
+      </main>
 
       <GeneralFooter />
-        
-      
     </>
-  )
+  );
 }
 
-export default App
+export default App;
