@@ -6,6 +6,7 @@ import SocialLinks from "./components/SocialLinks";
 import GeneralFooter from "./components/GeneralFooter";
 import CustomCursor from "./components/effects/CustomCursor";
 import ScrollRail from "./components/effects/ScrollRail";
+import AchievementSystem from "./components/effects/AchievementSystem";
 
 const AboutPage = lazy(() => import("./components/pages/AboutPage"));
 
@@ -16,6 +17,7 @@ function App() {
       <CustomCursor />
       <ScrollRail />
       <SocialLinks />
+      <AchievementSystem />
 
       <main>
         <Suspense fallback={null}>
