@@ -2,12 +2,32 @@ import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { Link } from "react-router-dom";
 import Reveal from "../../motion/Reveal";
 import Stagger, { StaggerItem } from "../../motion/Stagger";
+import AnimatedCounter from "../../effects/AnimatedCounter";
+import SectionLabel from "../../effects/SectionLabel";
+import Spotlight from "../../effects/Spotlight";
 
 const stats = [
-  { label: "Years building", value: "3+" },
-  { label: "Ops / day at 99.9%", value: "10K+" },
-  { label: "Rate-limiter RPS", value: "50K" },
-  { label: "MTTR reduced", value: "35%" },
+  {
+    label: "Years building",
+    to: 3,
+    suffix: "+",
+  },
+  {
+    label: "Ops / day at 99.9%",
+    to: 10000,
+    format: (v) => Math.round(v).toLocaleString(),
+    suffix: "+",
+  },
+  {
+    label: "Rate-limiter RPS",
+    to: 50000,
+    format: (v) => `${Math.round(v / 1000)}K`,
+  },
+  {
+    label: "MTTR reduced",
+    to: 35,
+    suffix: "%",
+  },
 ];
 
 const facts = [
@@ -26,7 +46,7 @@ const About = () => {
     >
       <div className="container-wide">
         <Reveal>
-          <p className="section-eyebrow">About me</p>
+          <SectionLabel index={1}>About me</SectionLabel>
         </Reveal>
         <Reveal delay={0.05}>
           <h2 className="section-heading mt-3">
@@ -84,34 +104,42 @@ const About = () => {
           <div className="lg:col-span-5 space-y-6">
             <Stagger className="grid grid-cols-2 gap-3">
               {stats.map((s) => (
-                <StaggerItem
-                  key={s.label}
-                  className="card-surface p-5 hover:border-accent-emerald/30 transition-colors"
-                >
-                  <div className="font-display text-3xl sm:text-4xl font-bold text-gradient leading-none">
-                    {s.value}
-                  </div>
-                  <div className="mt-2 font-mono text-[11px] uppercase tracking-widest text-fog-300">
-                    {s.label}
-                  </div>
+                <StaggerItem key={s.label}>
+                  <Spotlight className="rounded-2xl h-full">
+                    <div className="card-surface p-5 h-full transition-colors hover:border-accent-emerald/30">
+                      <div className="font-display text-3xl sm:text-4xl font-bold text-gradient leading-none">
+                        <AnimatedCounter
+                          to={s.to}
+                          suffix={s.suffix}
+                          format={s.format}
+                          duration={2}
+                        />
+                      </div>
+                      <div className="mt-2 font-mono text-[11px] uppercase tracking-widest text-fog-300">
+                        {s.label}
+                      </div>
+                    </div>
+                  </Spotlight>
                 </StaggerItem>
               ))}
             </Stagger>
 
             <Reveal delay={0.2}>
-              <dl className="card-surface p-5 divide-y divide-white/5">
-                {facts.map(({ k, v }) => (
-                  <div
-                    key={k}
-                    className="flex justify-between items-center py-2.5 first:pt-0 last:pb-0 text-sm gap-4"
-                  >
-                    <dt className="font-mono text-[11px] uppercase tracking-widest text-fog-400 flex-shrink-0">
-                      {k}
-                    </dt>
-                    <dd className="text-fog-100 font-medium text-right">{v}</dd>
-                  </div>
-                ))}
-              </dl>
+              <Spotlight className="rounded-2xl">
+                <dl className="card-surface p-5 divide-y divide-white/5">
+                  {facts.map(({ k, v }) => (
+                    <div
+                      key={k}
+                      className="flex justify-between items-center py-2.5 first:pt-0 last:pb-0 text-sm gap-4"
+                    >
+                      <dt className="font-mono text-[11px] uppercase tracking-widest text-fog-400 flex-shrink-0">
+                        {k}
+                      </dt>
+                      <dd className="text-fog-100 font-medium text-right">{v}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </Spotlight>
             </Reveal>
           </div>
         </div>

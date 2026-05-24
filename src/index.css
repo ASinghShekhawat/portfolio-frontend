@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Raleway:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Raleway:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Caveat:wght@500;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -39,6 +39,14 @@
             scroll-behavior: auto !important;
         }
     }
+
+    /* Custom cursor — only hide the native cursor on fine-pointer devices */
+    @media (pointer: fine) {
+        html.custom-cursor-active,
+        html.custom-cursor-active * {
+            cursor: none !important;
+        }
+    }
 }
 
 @layer components {
@@ -51,6 +59,54 @@
         -webkit-background-clip: text;
         background-clip: text;
         color: transparent;
+    }
+
+    .text-shimmer {
+        background: linear-gradient(
+            110deg,
+            #F5F7FA 0%,
+            #F5F7FA 38%,
+            #0DFC4B 50%,
+            #06D6F4 58%,
+            #F5F7FA 70%,
+            #F5F7FA 100%
+        );
+        background-size: 200% 100%;
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        animation: text-shimmer 6s linear infinite;
+    }
+
+    .conic-border {
+        position: relative;
+        isolation: isolate;
+    }
+    .conic-border::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        padding: 1px;
+        background: conic-gradient(
+            from var(--angle, 0deg),
+            transparent 0%,
+            rgba(13, 252, 75, 0.6) 25%,
+            rgba(6, 214, 244, 0.6) 50%,
+            transparent 75%
+        );
+        -webkit-mask:
+            linear-gradient(#000 0 0) content-box,
+            linear-gradient(#000 0 0);
+        -webkit-mask-composite: xor;
+                mask-composite: exclude;
+        animation: border-rotate 6s linear infinite;
+        z-index: -1;
+    }
+    @property --angle {
+        syntax: "<angle>";
+        inherits: false;
+        initial-value: 0deg;
     }
 
     .section-heading {

@@ -5,6 +5,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import CertificateModal from "./CertificateModal";
 import Reveal from "../../motion/Reveal";
+import SectionLabel from "../../effects/SectionLabel";
 
 const CertificateSlider = ({ certificates }) => {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -33,7 +34,7 @@ const CertificateSlider = ({ certificates }) => {
     >
       <div className="container-wide">
         <Reveal>
-          <p className="section-eyebrow">Education</p>
+          <SectionLabel index={5}>Education</SectionLabel>
         </Reveal>
         <Reveal delay={0.05}>
           <h2 className="section-heading mt-3">

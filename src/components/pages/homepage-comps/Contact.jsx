@@ -2,6 +2,8 @@ import { useState } from "react";
 import axios from "axios";
 import { FiSend, FiMail, FiMapPin, FiGithub, FiLinkedin } from "react-icons/fi";
 import Reveal from "../../motion/Reveal";
+import SectionLabel from "../../effects/SectionLabel";
+import Spotlight from "../../effects/Spotlight";
 
 const Contact = () => {
   const [submitting, setSubmitting] = useState(false);
@@ -53,7 +55,7 @@ const Contact = () => {
         <div className="grid lg:grid-cols-12 gap-12 items-start">
           <div className="lg:col-span-5">
             <Reveal>
-              <p className="section-eyebrow">Get in touch</p>
+              <SectionLabel index={6}>Get in touch</SectionLabel>
             </Reveal>
             <Reveal delay={0.05}>
               <h2 className="section-heading mt-3">
@@ -119,6 +121,7 @@ const Contact = () => {
           </div>
 
           <Reveal delay={0.15} className="lg:col-span-7">
+            <Spotlight className="rounded-2xl">
             <form
               onSubmit={handleSubmit}
               className="card-surface p-6 sm:p-8 space-y-5"
@@ -182,6 +185,7 @@ const Contact = () => {
                 </button>
               </div>
             </form>
+            </Spotlight>
           </Reveal>
         </div>
       </div>

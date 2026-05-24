@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { motion, useMotionValue, useSpring, useTransform, useReducedMotion } from "framer-motion";
 import { FiExternalLink, FiGithub, FiArrowUpRight } from "react-icons/fi";
+import Spotlight from "./effects/Spotlight";
 
 const ProjectCard = ({ project, handleModalInfo }) => {
   const ref = useRef(null);
@@ -31,6 +32,7 @@ const ProjectCard = ({ project, handleModalInfo }) => {
   };
 
   return (
+    <Spotlight className="rounded-2xl h-full">
     <motion.article
       ref={ref}
       onMouseMove={onMove}
@@ -135,6 +137,7 @@ const ProjectCard = ({ project, handleModalInfo }) => {
         </span>
       </div>
     </motion.article>
+    </Spotlight>
   );
 };
 

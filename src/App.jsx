@@ -4,6 +4,7 @@ import AuroraBackground from "./components/AuroraBackground";
 import HomePage from "./components/pages/HomePage";
 import SocialLinks from "./components/SocialLinks";
 import GeneralFooter from "./components/GeneralFooter";
+import CustomCursor from "./components/effects/CustomCursor";
 
 const AboutPage = lazy(() => import("./components/pages/AboutPage"));
 
@@ -11,6 +12,7 @@ function App() {
   return (
     <>
       <AuroraBackground />
+      <CustomCursor />
       <SocialLinks />
 
       <main>

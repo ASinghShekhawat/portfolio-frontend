@@ -77,6 +77,10 @@ export default {
           "0%": { transform: "translateX(0)" },
           "100%": { transform: "translateX(-50%)" },
         },
+        "marquee-reverse": {
+          "0%": { transform: "translateX(-50%)" },
+          "100%": { transform: "translateX(0)" },
+        },
         "pulse-glow": {
           "0%, 100%": { opacity: "0.4" },
           "50%": { opacity: "0.85" },
@@ -88,13 +92,32 @@ export default {
         "spin-slow": {
           to: { transform: "rotate(360deg)" },
         },
+        "spin-slow-reverse": {
+          to: { transform: "rotate(-360deg)" },
+        },
+        "text-shimmer": {
+          "0%": { backgroundPosition: "200% 50%" },
+          "100%": { backgroundPosition: "-200% 50%" },
+        },
+        "float-soft": {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-6px)" },
+        },
+        "border-rotate": {
+          "0%": { "--angle": "0deg" },
+          "100%": { "--angle": "360deg" },
+        },
       },
 
       animation: {
         marquee: "marquee 40s linear infinite",
+        "marquee-reverse": "marquee-reverse 40s linear infinite",
         "pulse-glow": "pulse-glow 4s ease-in-out infinite",
         "fade-in": "fade-in 0.6s ease-out both",
         "spin-slow": "spin-slow 12s linear infinite",
+        "spin-slow-reverse": "spin-slow-reverse 18s linear infinite",
+        "text-shimmer": "text-shimmer 6s linear infinite",
+        "float-soft": "float-soft 4s ease-in-out infinite",
       },
 
       transitionTimingFunction: {

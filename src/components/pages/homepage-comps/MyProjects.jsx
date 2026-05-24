@@ -5,6 +5,7 @@ import ProjectCard from "../../ProjectCard";
 import projects from "../../../utils/constants";
 import Reveal from "../../motion/Reveal";
 import Stagger, { StaggerItem } from "../../motion/Stagger";
+import SectionLabel from "../../effects/SectionLabel";
 
 const MyProjects = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -27,7 +28,7 @@ const MyProjects = () => {
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div>
             <Reveal>
-              <p className="section-eyebrow">Selected work</p>
+              <SectionLabel index={3}>Selected work</SectionLabel>
             </Reveal>
             <Reveal delay={0.05}>
               <h2 className="section-heading mt-3">
