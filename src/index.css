@@ -150,7 +150,7 @@
         font-family: 'Raleway', system-ui, sans-serif;
         background-color: rgb(var(--c-ink-950));
         color-scheme: dark;
-        transition: background-color 0.28s ease-out, color 0.28s ease-out;
+        transition: background-color 0.6s ease, color 0.6s ease;
     }
     html[data-theme="athos"] {
         color-scheme: light;
@@ -161,7 +161,7 @@
         color: rgb(var(--c-fog-50));
         -webkit-font-smoothing: antialiased;
         text-rendering: optimizeLegibility;
-        transition: background-color 0.28s ease-out, color 0.28s ease-out;
+        transition: background-color 0.6s ease, color 0.6s ease;
     }
 
     ::selection {
