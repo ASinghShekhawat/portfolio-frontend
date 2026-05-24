@@ -17,6 +17,7 @@ import Reveal from "../../motion/Reveal";
 import Stagger, { StaggerItem } from "../../motion/Stagger";
 import SectionLabel from "../../effects/SectionLabel";
 import Spotlight from "../../effects/Spotlight";
+import SplitHeading from "../../effects/SplitHeading";
 
 const iconMap = {
   Java: java,
@@ -152,11 +153,13 @@ const Techs = () => {
         <Reveal>
           <SectionLabel index={4}>Toolbox</SectionLabel>
         </Reveal>
-        <Reveal delay={0.05}>
-          <h2 className="section-heading mt-3">
-            Technologies I <span className="text-gradient">work with</span>
-          </h2>
-        </Reveal>
+        <SplitHeading
+          as="h2"
+          className="section-heading mt-3"
+          highlight="with"
+        >
+          Technologies I work with
+        </SplitHeading>
         <Reveal delay={0.1}>
           <p className="mt-3 max-w-xl text-fog-300">
             Picked for the job, not for the resume.
@@ -166,7 +169,7 @@ const Techs = () => {
         {/* Core stack mastery bars */}
         <Reveal delay={0.15}>
           <Spotlight className="rounded-2xl mt-10">
-            <div className="card-surface p-6 sm:p-8">
+            <div className="card-surface sheen p-6 sm:p-8">
               <div className="flex items-center justify-between flex-wrap gap-3 mb-6">
                 <h3 className="font-display font-semibold text-fog-50">
                   Core stack
@@ -191,7 +194,7 @@ const Techs = () => {
           {groups.map(({ title, icon: Icon, items }) => (
             <StaggerItem key={title} className="h-full">
               <Spotlight className="rounded-2xl h-full">
-                <div className="card-surface p-6 hover:border-accent-emerald/30 hover:shadow-card-hover transition-all duration-500 h-full">
+                <div className="card-surface sheen p-6 hover:border-accent-emerald/30 hover:shadow-card-hover transition-all duration-500 h-full">
                   <div className="flex items-center gap-3">
                     <span className="inline-grid h-9 w-9 place-items-center rounded-lg bg-gradient-brand-soft border border-accent-emerald/30 text-accent-emerald">
                       <Icon size={16} />

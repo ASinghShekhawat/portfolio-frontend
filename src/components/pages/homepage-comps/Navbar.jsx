@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { Link } from "react-scroll";
-import { motion, useScroll, useSpring, AnimatePresence } from "framer-motion";
+import { motion, useScroll, useSpring, AnimatePresence, LayoutGroup } from "framer-motion";
 
 const links = [
   { id: 1, link: "Home" },
@@ -15,6 +15,9 @@ const links = [
 const Navbar = () => {
   const [isShowNav, setIsShowNav] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [activeLink, setActiveLink] = useState("Home");
+  const [hoverLink, setHoverLink] = useState(null);
+  const navRef = useRef(null);
 
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
@@ -30,13 +33,31 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Lock body scroll when mobile nav open
+  // Body scroll lock when mobile nav open
   useEffect(() => {
     document.body.style.overflow = isShowNav ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
     };
   }, [isShowNav]);
+
+  // Track active section via IntersectionObserver
+  useEffect(() => {
+    const obs = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible) setActiveLink(visible.target.id);
+      },
+      { rootMargin: "-45% 0px -45% 0px", threshold: [0, 0.25, 0.5, 0.75, 1] }
+    );
+    const nodes = links.map((l) => document.getElementById(l.link)).filter(Boolean);
+    nodes.forEach((n) => obs.observe(n));
+    return () => obs.disconnect();
+  }, []);
+
+  const indicatorKey = hoverLink || activeLink;
 
   return (
     <>
@@ -51,13 +72,14 @@ const Navbar = () => {
         }`}
       >
         <nav
+          ref={navRef}
           aria-label="Primary"
           className="container-wide flex h-16 md:h-20 items-center justify-between"
         >
           <Link
             to="Home"
-            smooth
-            duration={500}
+            smooth="easeOutQuart"
+            duration={350}
             className="group flex items-center gap-2 cursor-pointer"
           >
             <span className="grid h-9 w-9 place-items-center rounded-lg bg-gradient-brand text-ink-950 font-display font-bold text-base shadow-glow">
@@ -68,30 +90,70 @@ const Navbar = () => {
             </span>
           </Link>
 
-          <ul className="hidden lg:flex items-center gap-1 font-medium text-sm text-fog-200">
-            {links.map(({ id, link }) => (
-              <li key={id}>
-                <Link
-                  to={link}
-                  smooth
-                  spy
-                  duration={500}
-                  offset={-80}
-                  activeClass="!text-fog-50 !bg-white/5"
-                  className="cursor-pointer rounded-md px-4 py-2 transition-colors hover:text-fog-50 hover:bg-white/5"
-                >
-                  {link}
-                </Link>
-              </li>
-            ))}
-          </ul>
+          <LayoutGroup>
+            <ul
+              onMouseLeave={() => setHoverLink(null)}
+              className="hidden lg:flex items-center gap-1 font-medium text-sm text-fog-200"
+            >
+              {links.map(({ id, link }) => {
+                const isHL = indicatorKey === link;
+                return (
+                  <li
+                    key={id}
+                    onMouseEnter={() => setHoverLink(link)}
+                    className="relative"
+                  >
+                    <Link
+                      to={link}
+                      smooth="easeOutQuart"
+                      spy
+                      duration={350}
+                      offset={-80}
+                      onSetActive={() => setActiveLink(link)}
+                      className="relative z-10 inline-block cursor-pointer rounded-md px-4 py-2 transition-colors hover:text-fog-50"
+                    >
+                      {isHL && (
+                        <motion.span
+                          layoutId="nav-indicator"
+                          className="absolute inset-0 -z-10 rounded-md bg-white/[0.06] border border-white/[0.08]"
+                          transition={{
+                            type: "spring",
+                            stiffness: 380,
+                            damping: 30,
+                          }}
+                        />
+                      )}
+                      <span
+                        className={
+                          isHL ? "text-fog-50" : "transition-colors"
+                        }
+                      >
+                        {link}
+                      </span>
+                      {activeLink === link && (
+                        <motion.span
+                          layoutId="nav-active-dot"
+                          className="absolute -bottom-0.5 left-1/2 -translate-x-1/2 h-1 w-1 rounded-full bg-accent-emerald shadow-glow"
+                          transition={{
+                            type: "spring",
+                            stiffness: 380,
+                            damping: 30,
+                          }}
+                        />
+                      )}
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+          </LayoutGroup>
 
           <div className="hidden lg:flex items-center gap-3">
             <a
               href="/FullStack_Developer_Aditya_Resume.pdf"
               target="_blank"
               rel="noreferrer"
-              className="font-mono text-xs uppercase tracking-widest px-4 py-2 rounded-md border border-white/10 text-fog-100 hover:border-accent-emerald/60 hover:text-accent-emerald transition-colors"
+              className="sheen font-mono text-xs uppercase tracking-widest px-4 py-2 rounded-md border border-white/10 text-fog-100 hover:border-accent-emerald/60 hover:text-accent-emerald transition-colors"
             >
               Résumé
             </a>
@@ -136,8 +198,8 @@ const Navbar = () => {
                   <Link
                     onClick={() => setIsShowNav(false)}
                     to={link}
-                    smooth
-                    duration={500}
+                    smooth="easeOutQuart"
+                    duration={350}
                     offset={-80}
                     className="font-display text-3xl font-semibold text-fog-50 cursor-pointer hover:text-accent-emerald transition-colors"
                   >

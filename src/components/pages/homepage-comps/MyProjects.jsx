@@ -6,6 +6,7 @@ import projects from "../../../utils/constants";
 import Reveal from "../../motion/Reveal";
 import Stagger, { StaggerItem } from "../../motion/Stagger";
 import SectionLabel from "../../effects/SectionLabel";
+import SplitHeading from "../../effects/SplitHeading";
 
 const MyProjects = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -30,12 +31,13 @@ const MyProjects = () => {
             <Reveal>
               <SectionLabel index={3}>Selected work</SectionLabel>
             </Reveal>
-            <Reveal delay={0.05}>
-              <h2 className="section-heading mt-3">
-                Projects I&rsquo;ve{" "}
-                <span className="text-gradient">shipped</span>
-              </h2>
-            </Reveal>
+            <SplitHeading
+              as="h2"
+              className="section-heading mt-3"
+              highlight="shipped"
+            >
+              Projects I&apos;ve shipped
+            </SplitHeading>
             <Reveal delay={0.1}>
               <p className="mt-3 max-w-xl text-fog-300">
                 A mix of product builds, side experiments, and learning

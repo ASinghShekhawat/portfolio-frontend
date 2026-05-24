@@ -73,8 +73,8 @@ const GeneralFooter = () => {
               <li>
                 <Link
                   to="Home"
-                  smooth
-                  duration={500}
+                  smooth="easeOutQuart"
+                  duration={350}
                   aria-label="Back to top"
                   className="ml-2 inline-grid h-10 w-10 place-items-center rounded-lg bg-gradient-brand text-ink-950 cursor-pointer hover:shadow-glow transition-shadow"
                 >

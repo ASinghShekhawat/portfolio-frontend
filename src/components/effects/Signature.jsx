@@ -30,13 +30,15 @@ const Signature = ({ className = "", text = "Aditya" }) => {
         className="absolute -bottom-0.5 left-0 right-0 h-px bg-gradient-brand opacity-50"
       />
 
-      {/* The script text, revealed by a clip-path wipe */}
+      {/* The script text, revealed by a clip-path wipe.
+          Negative right/top/bottom inset on the end state preserves
+          italic overhang (Caveat's tail flourish on the final glyph). */}
       <motion.span
-        initial={{ clipPath: "inset(0 100% 0 0)" }}
+        initial={{ clipPath: "inset(-20% 100% -20% 0)" }}
         animate={
           inView
-            ? { clipPath: "inset(0 0% 0 0)" }
-            : { clipPath: "inset(0 100% 0 0)" }
+            ? { clipPath: "inset(-20% -20% -20% 0)" }
+            : { clipPath: "inset(-20% 100% -20% 0)" }
         }
         transition={{
           duration: reduce ? 0.001 : 1.6,
@@ -47,6 +49,7 @@ const Signature = ({ className = "", text = "Aditya" }) => {
           fontFamily: '"Caveat", "Brush Script MT", cursive',
           fontWeight: 700,
           fontSize: "2.25rem",
+          paddingRight: "0.2em",
         }}
       >
         {text}

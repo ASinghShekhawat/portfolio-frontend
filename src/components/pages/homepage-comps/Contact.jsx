@@ -4,6 +4,7 @@ import { FiSend, FiMail, FiMapPin, FiGithub, FiLinkedin } from "react-icons/fi";
 import Reveal from "../../motion/Reveal";
 import SectionLabel from "../../effects/SectionLabel";
 import Spotlight from "../../effects/Spotlight";
+import SplitHeading from "../../effects/SplitHeading";
 
 const Contact = () => {
   const [submitting, setSubmitting] = useState(false);
@@ -57,12 +58,13 @@ const Contact = () => {
             <Reveal>
               <SectionLabel index={6}>Get in touch</SectionLabel>
             </Reveal>
-            <Reveal delay={0.05}>
-              <h2 className="section-heading mt-3">
-                Let&rsquo;s build something{" "}
-                <span className="text-gradient">together</span>.
-              </h2>
-            </Reveal>
+            <SplitHeading
+              as="h2"
+              className="section-heading mt-3"
+              highlight="together"
+            >
+              Let&apos;s build something together.
+            </SplitHeading>
             <Reveal delay={0.1}>
               <p className="mt-4 text-fog-300 text-base sm:text-lg leading-relaxed">
                 I&rsquo;m always open to interesting conversations — roles,
@@ -124,7 +126,7 @@ const Contact = () => {
             <Spotlight className="rounded-2xl">
             <form
               onSubmit={handleSubmit}
-              className="card-surface p-6 sm:p-8 space-y-5"
+              className="card-surface sheen p-6 sm:p-8 space-y-5"
             >
               <div className="grid sm:grid-cols-2 gap-4">
                 <Field label="Your name" htmlFor="contact-name">

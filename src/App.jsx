@@ -5,6 +5,7 @@ import HomePage from "./components/pages/HomePage";
 import SocialLinks from "./components/SocialLinks";
 import GeneralFooter from "./components/GeneralFooter";
 import CustomCursor from "./components/effects/CustomCursor";
+import ScrollRail from "./components/effects/ScrollRail";
 
 const AboutPage = lazy(() => import("./components/pages/AboutPage"));
 
@@ -13,6 +14,7 @@ function App() {
     <>
       <AuroraBackground />
       <CustomCursor />
+      <ScrollRail />
       <SocialLinks />
 
       <main>

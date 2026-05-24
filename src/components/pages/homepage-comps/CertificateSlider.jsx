@@ -6,6 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 import CertificateModal from "./CertificateModal";
 import Reveal from "../../motion/Reveal";
 import SectionLabel from "../../effects/SectionLabel";
+import SplitHeading from "../../effects/SplitHeading";
 
 const CertificateSlider = ({ certificates }) => {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -36,12 +37,13 @@ const CertificateSlider = ({ certificates }) => {
         <Reveal>
           <SectionLabel index={5}>Education</SectionLabel>
         </Reveal>
-        <Reveal delay={0.05}>
-          <h2 className="section-heading mt-3">
-            Certifications &amp;{" "}
-            <span className="text-gradient">credentials</span>
-          </h2>
-        </Reveal>
+        <SplitHeading
+          as="h2"
+          className="section-heading mt-3"
+          highlight="credentials"
+        >
+          Certifications & credentials
+        </SplitHeading>
         <Reveal delay={0.1}>
           <p className="mt-3 max-w-xl text-fog-300">
             A snapshot of formal training I&rsquo;ve completed along the way.

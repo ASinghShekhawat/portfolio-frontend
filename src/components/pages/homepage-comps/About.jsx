@@ -5,6 +5,7 @@ import Stagger, { StaggerItem } from "../../motion/Stagger";
 import AnimatedCounter from "../../effects/AnimatedCounter";
 import SectionLabel from "../../effects/SectionLabel";
 import Spotlight from "../../effects/Spotlight";
+import SplitHeading from "../../effects/SplitHeading";
 
 const stats = [
   {
@@ -48,12 +49,13 @@ const About = () => {
         <Reveal>
           <SectionLabel index={1}>About me</SectionLabel>
         </Reveal>
-        <Reveal delay={0.05}>
-          <h2 className="section-heading mt-3">
-            Backend engineer,{" "}
-            <span className="text-gradient">cloud-native by default</span>.
-          </h2>
-        </Reveal>
+        <SplitHeading
+          as="h2"
+          className="section-heading mt-3"
+          highlight="cloud-native"
+        >
+          Backend engineer, cloud-native by default.
+        </SplitHeading>
 
         <div className="grid lg:grid-cols-12 gap-10 mt-12 items-start">
           <div className="lg:col-span-7 space-y-5 text-fog-200 text-base sm:text-lg leading-relaxed">
@@ -106,7 +108,7 @@ const About = () => {
               {stats.map((s) => (
                 <StaggerItem key={s.label}>
                   <Spotlight className="rounded-2xl h-full">
-                    <div className="card-surface p-5 h-full transition-colors hover:border-accent-emerald/30">
+                    <div className="card-surface sheen p-5 h-full transition-colors hover:border-accent-emerald/30">
                       <div className="font-display text-3xl sm:text-4xl font-bold text-gradient leading-none">
                         <AnimatedCounter
                           to={s.to}

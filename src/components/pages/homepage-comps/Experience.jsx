@@ -2,6 +2,7 @@ import Reveal from "../../motion/Reveal";
 import Stagger, { StaggerItem } from "../../motion/Stagger";
 import SectionLabel from "../../effects/SectionLabel";
 import Spotlight from "../../effects/Spotlight";
+import SplitHeading from "../../effects/SplitHeading";
 
 const experiences = [
   {
@@ -68,11 +69,13 @@ const Experience = () => {
         <Reveal>
           <SectionLabel index={2}>Where I&rsquo;ve worked</SectionLabel>
         </Reveal>
-        <Reveal delay={0.05}>
-          <h2 className="section-heading mt-3">
-            Experience &amp; <span className="text-gradient">impact</span>
-          </h2>
-        </Reveal>
+        <SplitHeading
+          as="h2"
+          className="section-heading mt-3"
+          highlight="impact"
+        >
+          Experience & impact
+        </SplitHeading>
         <Reveal delay={0.1}>
           <p className="mt-4 max-w-2xl text-fog-300 text-base sm:text-lg">
             3+ years shipping production backend systems — from data-viz APIs
@@ -117,7 +120,7 @@ const Experience = () => {
                     }`}
                   >
                     <Spotlight className="rounded-2xl">
-                    <div className="card-surface p-6 hover:border-accent-emerald/30 hover:shadow-card-hover transition-all duration-500">
+                    <div className="card-surface sheen p-6 hover:border-accent-emerald/30 hover:shadow-card-hover transition-all duration-500">
                       <div className="flex flex-wrap items-baseline gap-2 mb-2">
                         <h3 className="font-display text-xl font-semibold text-fog-50">
                           {exp.role}

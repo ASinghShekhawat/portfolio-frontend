@@ -7,7 +7,8 @@
 @layer base {
     html {
         font-family: 'Raleway', system-ui, sans-serif;
-        scroll-behavior: smooth;
+        /* No native smooth-scroll — react-scroll handles smoothing
+           with a snappier custom easing. Stacking both feels sluggish. */
         background-color: #07090C;
         color-scheme: dark;
     }
@@ -135,6 +136,93 @@
 
     .card-surface {
         @apply relative overflow-hidden rounded-2xl bg-ink-800/60 border border-white/5 backdrop-blur-sm;
+    }
+
+    /* Sheen sweep — diagonal light band that sweeps across the surface on hover */
+    .sheen {
+        position: relative;
+        isolation: isolate;
+    }
+    .sheen::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        pointer-events: none;
+        background: linear-gradient(
+            115deg,
+            transparent 0%,
+            transparent 40%,
+            rgba(255, 255, 255, 0.08) 48%,
+            rgba(13, 252, 75, 0.18) 50%,
+            rgba(255, 255, 255, 0.08) 52%,
+            transparent 60%,
+            transparent 100%
+        );
+        background-size: 250% 250%;
+        background-position: 200% 0;
+        opacity: 0;
+        transition: background-position 0.9s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s;
+        mix-blend-mode: overlay;
+        z-index: 1;
+    }
+    .sheen:hover::after,
+    .group:hover .sheen::after {
+        background-position: -50% 0;
+        opacity: 1;
+    }
+
+    /* Animated underline that draws from left on hover */
+    .underline-draw {
+        position: relative;
+        display: inline-block;
+    }
+    .underline-draw::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -3px;
+        height: 1px;
+        background: linear-gradient(90deg, #0DFC4B, #06D6F4);
+        transform: scaleX(0);
+        transform-origin: 0% 50%;
+        transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .underline-draw:hover::after {
+        transform: scaleX(1);
+    }
+
+    /* Marquee with pause-on-hover */
+    .marquee-track:hover .marquee-item {
+        animation-play-state: paused;
+    }
+    .marquee-item {
+        transition: color 0.3s, transform 0.3s;
+    }
+    .marquee-item:hover {
+        color: #0DFC4B;
+        transform: scale(1.08);
+    }
+
+    /* Gradient border (mask trick — works in all modern browsers) */
+    .border-gradient {
+        position: relative;
+    }
+    .border-gradient::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        padding: 1px;
+        background: linear-gradient(135deg, rgba(13,252,75,0.5), rgba(6,214,244,0.0) 40%, rgba(167,139,250,0.4));
+        -webkit-mask:
+            linear-gradient(#000 0 0) content-box,
+            linear-gradient(#000 0 0);
+        -webkit-mask-composite: xor;
+                mask-composite: exclude;
+        pointer-events: none;
+        opacity: 0.7;
     }
 
     .ring-brand {

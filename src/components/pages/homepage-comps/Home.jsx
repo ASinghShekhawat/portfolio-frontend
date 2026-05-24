@@ -34,7 +34,7 @@ const rotatingWords = ["pipelines", "agents", "services", "systems"];
 const terminalLines = [
   { prefix: "$", text: "whoami", pause: 250 },
   { prefix: ">", text: "aditya.shekhawat · backend engineer", color: "text-fog-300", pause: 350 },
-  { prefix: "$", text: "uptime --since 2022", pause: 250 },
+  { prefix: "$", text: "uptime --since 2023", pause: 250 },
   {
     prefix: ">",
     text: "3 yrs · 99.9% reliability · 10,000+ ops/day",
@@ -158,8 +158,8 @@ const Home = () => {
             transition={{ duration: 0.7, delay: 0.85, ease: [0.16, 1, 0.3, 1] }}
             className="mt-8 flex flex-wrap items-center gap-3"
           >
-            <Link to="Projects" smooth duration={500} offset={-80}>
-              <MagneticButton className="group inline-flex items-center gap-2 px-6 py-3 rounded-md bg-gradient-brand text-ink-950 font-semibold shadow-glow hover:shadow-glow-lg transition-shadow">
+            <Link to="Projects" smooth="easeOutQuart" duration={350} offset={-80}>
+              <MagneticButton className="sheen group inline-flex items-center gap-2 px-6 py-3 rounded-md bg-gradient-brand text-ink-950 font-semibold shadow-glow hover:shadow-glow-lg transition-shadow">
                 See my work
                 <MdOutlineKeyboardArrowRight
                   size={20}
@@ -174,7 +174,7 @@ const Home = () => {
               href="/FullStack_Developer_Aditya_Resume.pdf"
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-md border border-white/15 text-fog-100 font-semibold hover:border-accent-emerald hover:text-accent-emerald transition-colors"
+              className="sheen inline-flex items-center gap-2 px-6 py-3 rounded-md border border-white/15 text-fog-100 font-semibold hover:border-accent-emerald hover:text-accent-emerald transition-colors"
             >
               <HiOutlineDownload size={18} />
               Résumé
@@ -240,15 +240,21 @@ const Home = () => {
               startAngle={45}
             />
 
-            {/* Floating badges */}
+            {/* Bento KPI tiles — floating around portrait */}
             <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 10, x: -10 }}
+              animate={{ opacity: 1, y: 0, x: 0 }}
               transition={{ delay: 0.9, duration: 0.5 }}
-              className="absolute -left-4 sm:-left-10 top-8 glass rounded-xl px-3 py-2 shadow-card animate-float-soft"
+              className="absolute -left-6 sm:-left-14 top-6 glass sheen border-gradient rounded-xl px-3 py-2 shadow-card animate-float-soft"
             >
-              <div className="font-mono text-[10px] uppercase tracking-widest text-fog-300">
-                Currently
+              <div className="flex items-center gap-2">
+                <span className="relative flex h-1.5 w-1.5">
+                  <span className="absolute inset-0 rounded-full bg-accent-emerald animate-ping opacity-70" />
+                  <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-accent-emerald" />
+                </span>
+                <div className="font-mono text-[10px] uppercase tracking-widest text-fog-300">
+                  Currently
+                </div>
               </div>
               <div className="text-sm text-fog-50 font-semibold">
                 @ BrowserStack
@@ -256,11 +262,41 @@ const Home = () => {
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.1, duration: 0.5 }}
-              className="absolute -right-2 sm:-right-8 bottom-10 glass rounded-xl px-3 py-2 shadow-card animate-float-soft"
-              style={{ animationDelay: "1s" }}
+              initial={{ opacity: 0, y: 10, x: 10 }}
+              animate={{ opacity: 1, y: 0, x: 0 }}
+              transition={{ delay: 1.05, duration: 0.5 }}
+              className="absolute -right-4 sm:-right-12 top-1/3 glass sheen border-gradient rounded-xl px-3 py-2 shadow-card animate-float-soft"
+              style={{ animationDelay: "0.6s" }}
+            >
+              <div className="font-mono text-[10px] uppercase tracking-widest text-fog-300">
+                Uptime
+              </div>
+              <div className="text-base text-gradient font-display font-bold leading-none">
+                99.9%
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 10, x: 10 }}
+              animate={{ opacity: 1, y: 0, x: 0 }}
+              transition={{ delay: 1.2, duration: 0.5 }}
+              className="absolute -right-2 sm:-right-10 bottom-14 glass sheen border-gradient rounded-xl px-3 py-2 shadow-card animate-float-soft"
+              style={{ animationDelay: "1.2s" }}
+            >
+              <div className="font-mono text-[10px] uppercase tracking-widest text-fog-300">
+                Throughput
+              </div>
+              <div className="text-base text-gradient font-display font-bold leading-none">
+                10K+ ops/day
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 10, x: -10 }}
+              animate={{ opacity: 1, y: 0, x: 0 }}
+              transition={{ delay: 1.35, duration: 0.5 }}
+              className="absolute -left-2 sm:-left-12 bottom-8 glass sheen border-gradient rounded-xl px-3 py-2 shadow-card animate-float-soft"
+              style={{ animationDelay: "1.8s" }}
             >
               <div className="font-mono text-[10px] uppercase tracking-widest text-fog-300">
                 Focus
@@ -273,25 +309,25 @@ const Home = () => {
         </div>
       </div>
 
-      {/* Dual marquee tech strip */}
-      <div className="absolute bottom-0 left-0 right-0 pointer-events-none">
+      {/* Dual marquee tech strip — pauses on hover, items scale */}
+      <div className="absolute bottom-0 left-0 right-0">
         <div className="relative w-full overflow-hidden border-y border-white/5 bg-ink-950/40 backdrop-blur-sm">
-          <div className="flex w-max gap-12 animate-marquee whitespace-nowrap py-3">
+          <div className="marquee-track flex w-max gap-12 animate-marquee whitespace-nowrap py-3">
             {[...marqueeRowA, ...marqueeRowA].map((t, i) => (
               <span
                 key={i}
-                className="font-mono text-sm tracking-widest text-fog-300/70 flex items-center gap-12"
+                className="marquee-item font-mono text-sm tracking-widest text-fog-300/70 flex items-center gap-12 cursor-default"
               >
                 {t}
                 <span className="text-accent-emerald/40">◆</span>
               </span>
             ))}
           </div>
-          <div className="flex w-max gap-12 animate-marquee-reverse whitespace-nowrap py-3 border-t border-white/5">
+          <div className="marquee-track flex w-max gap-12 animate-marquee-reverse whitespace-nowrap py-3 border-t border-white/5">
             {[...marqueeRowB, ...marqueeRowB].map((t, i) => (
               <span
                 key={i}
-                className="font-mono text-sm tracking-widest text-fog-300/50 flex items-center gap-12"
+                className="marquee-item font-mono text-sm tracking-widest text-fog-300/50 flex items-center gap-12 cursor-default"
               >
                 {t}
                 <span className="text-accent-cyan/40">◇</span>
