@@ -10,7 +10,7 @@ const AboutPage = () => {
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-50 bg-ink-950/80 backdrop-blur-xl border-b border-white/5">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-ink-950/80 backdrop-blur-xl border-b border-line-subtle/5">
         <nav
           aria-label="Primary"
           className="container-wide flex h-16 md:h-20 items-center justify-between"
@@ -26,7 +26,7 @@ const AboutPage = () => {
 
           <Link
             to="/"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-md border border-white/10 text-fog-100 text-sm hover:border-accent-emerald/60 hover:text-accent-emerald transition-colors"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-md border border-line-subtle/10 text-fog-100 text-sm hover:border-accent-emerald/60 hover:text-accent-emerald transition-colors"
           >
             <FiArrowLeft size={16} /> Back home
           </Link>

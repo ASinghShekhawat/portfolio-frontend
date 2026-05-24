@@ -26,7 +26,7 @@ const year = new Date().getFullYear();
 
 const GeneralFooter = () => {
   return (
-    <footer className="relative mt-24 border-t border-white/5">
+    <footer className="relative mt-24 border-t border-line-subtle/5">
       <div className="container-wide pt-14 pb-10">
         {/* Big closing wordmark */}
         <div className="text-center mb-10">
@@ -64,7 +64,7 @@ const GeneralFooter = () => {
                     target="_blank"
                     rel="noreferrer"
                     aria-label={label}
-                    className="inline-grid h-10 w-10 place-items-center rounded-lg bg-ink-800/70 border border-white/10 text-fog-200 hover:text-accent-emerald hover:border-accent-emerald/50 transition-colors"
+                    className="inline-grid h-10 w-10 place-items-center rounded-lg bg-ink-800/70 border border-line-subtle/10 text-fog-200 hover:text-accent-emerald hover:border-accent-emerald/50 transition-colors"
                   >
                     {icon}
                   </a>
@@ -85,7 +85,7 @@ const GeneralFooter = () => {
           </div>
         </div>
 
-        <div className="mt-10 pt-6 border-t border-white/5 flex flex-wrap items-center justify-between gap-2 text-xs text-fog-400">
+        <div className="mt-10 pt-6 border-t border-line-subtle/5 flex flex-wrap items-center justify-between gap-2 text-xs text-fog-400">
           <span>© {year} Aditya Shekhawat. All rights reserved.</span>
           <span className="font-mono">
             Built with React, Tailwind, Framer Motion · Crafted with care.

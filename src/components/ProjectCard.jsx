@@ -57,7 +57,7 @@ const ProjectCard = ({ project, handleModalInfo }) => {
           <div className="absolute inset-0 bg-gradient-to-t from-ink-950/90 via-ink-950/30 to-transparent opacity-90" />
           <div className="absolute top-3 left-3 flex gap-1.5">
             {project.year && (
-              <span className="font-mono text-[10px] uppercase tracking-widest px-2 py-1 rounded-full bg-ink-950/70 border border-white/10 text-fog-200 backdrop-blur-sm">
+              <span className="font-mono text-[10px] uppercase tracking-widest px-2 py-1 rounded-full bg-ink-950/70 border border-line-subtle/10 text-fog-200 backdrop-blur-sm">
                 {project.year}
               </span>
             )}
@@ -88,7 +88,7 @@ const ProjectCard = ({ project, handleModalInfo }) => {
               {project.stack.slice(0, 4).map((t) => (
                 <span
                   key={t}
-                  className="font-mono text-[10px] uppercase tracking-widest px-2 py-1 rounded-full bg-ink-700/60 border border-white/5 text-fog-200"
+                  className="font-mono text-[10px] uppercase tracking-widest px-2 py-1 rounded-full bg-ink-700/60 border border-line-subtle/5 text-fog-200"
                 >
                   {t}
                 </span>
@@ -98,7 +98,7 @@ const ProjectCard = ({ project, handleModalInfo }) => {
         </div>
       </button>
 
-      <div className="px-5 pb-5 flex items-center gap-2 border-t border-white/5 pt-4">
+      <div className="px-5 pb-5 flex items-center gap-2 border-t border-line-subtle/5 pt-4">
         {project.demo ? (
           <button
             type="button"

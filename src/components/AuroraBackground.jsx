@@ -1,7 +1,7 @@
 /**
- * Lightweight ambient background — three blurred gradient orbs plus a
- * subtle grid overlay and noise texture. Replaces the previous particles
- * background, which was heavy and ran on every route.
+ * Ambient background — blurred gradient orbs plus a subtle grid overlay
+ * and noise texture. Theme-aware: uses CSS custom properties so it
+ * retones cleanly between Porthos (dark) and Athos (light).
  */
 const AuroraBackground = () => {
   return (
@@ -11,10 +11,10 @@ const AuroraBackground = () => {
     >
       {/* Grid */}
       <div
-        className="absolute inset-0 opacity-[0.18]"
+        className="absolute inset-0 opacity-[0.6]"
         style={{
           backgroundImage:
-            "linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)",
+            "linear-gradient(var(--grid-line) 1px, transparent 1px), linear-gradient(90deg, var(--grid-line) 1px, transparent 1px)",
           backgroundSize: "56px 56px",
           maskImage:
             "radial-gradient(ellipse 80% 60% at 50% 30%, #000 40%, transparent 100%)",
@@ -35,14 +35,21 @@ const AuroraBackground = () => {
       />
 
       {/* Noise */}
-      <div className="absolute inset-0 bg-noise opacity-[0.5] mix-blend-overlay" />
+      <div
+        className="absolute inset-0"
+        style={{
+          backgroundImage: "var(--noise-bg)",
+          opacity: "var(--noise-opacity)",
+          mixBlendMode: "var(--noise-blend)",
+        }}
+      />
 
       {/* Vignette */}
       <div
         className="absolute inset-0"
         style={{
           background:
-            "radial-gradient(ellipse at center, transparent 0%, transparent 50%, rgba(7,9,12,0.6) 100%)",
+            "radial-gradient(ellipse at center, transparent 0%, transparent 50%, var(--vignette-color) 100%)",
         }}
       />
     </div>

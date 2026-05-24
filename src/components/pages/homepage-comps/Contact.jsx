@@ -9,6 +9,18 @@ import SplitHeading from "../../effects/SplitHeading";
 const Contact = () => {
   const [submitting, setSubmitting] = useState(false);
 
+  // Pull live theme colors so SweetAlert matches whichever theme is active
+  const themeColors = () => {
+    const cs = getComputedStyle(document.documentElement);
+    const rgb = (name) => `rgb(${cs.getPropertyValue(name).trim()})`;
+    return {
+      accent: rgb("--c-accent-emerald"),
+      bg: rgb("--c-ink-900"),
+      fg: rgb("--c-fog-50"),
+      backdrop: `rgb(${cs.getPropertyValue("--c-ink-950").trim()} / 0.7)`,
+    };
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     setSubmitting(true);
@@ -17,28 +29,30 @@ const Contact = () => {
     try {
       await axios.post("https://getform.io/f/bgdlxrea", formData);
       const { default: Swal } = await import("sweetalert2");
+      const c = themeColors();
       await Swal.fire({
         icon: "success",
-        iconColor: "#0DFC4B",
+        iconColor: c.accent,
         title: "Message sent!",
         text: "Thanks for reaching out — I'll get back to you soon.",
         showConfirmButton: true,
-        background: "#0F1419",
-        color: "#F5F7FA",
-        confirmButtonColor: "#0DFC4B",
+        background: c.bg,
+        color: c.fg,
+        confirmButtonColor: c.accent,
         confirmButtonText: "Cheers",
-        backdrop: "rgba(7, 9, 12, 0.7)",
+        backdrop: c.backdrop,
       });
       event.target.reset();
     } catch (error) {
       const { default: Swal } = await import("sweetalert2");
+      const c = themeColors();
       await Swal.fire({
         icon: "error",
         title: "Something went wrong",
         text: "Couldn't send your message. Please try email instead.",
-        background: "#0F1419",
-        color: "#F5F7FA",
-        confirmButtonColor: "#0DFC4B",
+        background: c.bg,
+        color: c.fg,
+        confirmButtonColor: c.accent,
       });
       console.error(error);
     } finally {
@@ -76,7 +90,7 @@ const Contact = () => {
             <Reveal delay={0.18}>
               <ul className="mt-8 space-y-3 text-sm">
                 <li className="flex items-center gap-3 text-fog-200">
-                  <span className="inline-grid h-9 w-9 place-items-center rounded-lg bg-ink-800/80 border border-white/10 text-accent-emerald">
+                  <span className="inline-grid h-9 w-9 place-items-center rounded-lg bg-ink-800/80 border border-line-subtle/10 text-accent-emerald">
                     <FiMail />
                   </span>
                   <a
@@ -87,13 +101,13 @@ const Contact = () => {
                   </a>
                 </li>
                 <li className="flex items-center gap-3 text-fog-200">
-                  <span className="inline-grid h-9 w-9 place-items-center rounded-lg bg-ink-800/80 border border-white/10 text-accent-emerald">
+                  <span className="inline-grid h-9 w-9 place-items-center rounded-lg bg-ink-800/80 border border-line-subtle/10 text-accent-emerald">
                     <FiMapPin />
                   </span>
                   <span>Bangalore, India</span>
                 </li>
                 <li className="flex items-center gap-3 text-fog-200">
-                  <span className="inline-grid h-9 w-9 place-items-center rounded-lg bg-ink-800/80 border border-white/10 text-accent-emerald">
+                  <span className="inline-grid h-9 w-9 place-items-center rounded-lg bg-ink-800/80 border border-line-subtle/10 text-accent-emerald">
                     <FiLinkedin />
                   </span>
                   <a
@@ -106,7 +120,7 @@ const Contact = () => {
                   </a>
                 </li>
                 <li className="flex items-center gap-3 text-fog-200">
-                  <span className="inline-grid h-9 w-9 place-items-center rounded-lg bg-ink-800/80 border border-white/10 text-accent-emerald">
+                  <span className="inline-grid h-9 w-9 place-items-center rounded-lg bg-ink-800/80 border border-line-subtle/10 text-accent-emerald">
                     <FiGithub />
                   </span>
                   <a
@@ -198,7 +212,7 @@ const Contact = () => {
 const Field = ({ label, htmlFor, textarea, children }) => (
   <label
     htmlFor={htmlFor}
-    className={`block rounded-lg border border-white/10 bg-ink-900/60 px-4 ${
+    className={`block rounded-lg border border-line-subtle/10 bg-ink-900/60 px-4 ${
       textarea ? "py-3" : "py-2.5"
     } focus-within:border-accent-emerald/60 transition-colors`}
   >

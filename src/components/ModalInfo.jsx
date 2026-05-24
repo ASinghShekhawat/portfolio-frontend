@@ -35,7 +35,7 @@ export function ModalInfo({ SelectedProject, closeModal }) {
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: 10, scale: 0.97 }}
           transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-          className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-2xl border border-white/10 bg-ink-900/95 shadow-card-hover"
+          className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-2xl border border-line-subtle/10 bg-ink-900/95 shadow-card-hover"
         >
           <div className="relative aspect-[16/9] overflow-hidden bg-ink-800">
             <img
@@ -50,7 +50,7 @@ export function ModalInfo({ SelectedProject, closeModal }) {
             type="button"
             onClick={closeModal}
             aria-label="Close project details"
-            className="absolute top-4 right-4 inline-grid h-10 w-10 place-items-center rounded-full bg-ink-950/70 border border-white/10 text-fog-100 hover:text-accent-emerald hover:border-accent-emerald/50 backdrop-blur-sm transition-colors"
+            className="absolute top-4 right-4 inline-grid h-10 w-10 place-items-center rounded-full bg-ink-950/70 border border-line-subtle/10 text-fog-100 hover:text-accent-emerald hover:border-accent-emerald/50 backdrop-blur-sm transition-colors"
           >
             <FiX size={18} />
           </button>
@@ -85,7 +85,7 @@ export function ModalInfo({ SelectedProject, closeModal }) {
                     {SelectedProject.stack.map((t) => (
                       <span
                         key={t}
-                        className="font-mono text-[10px] uppercase tracking-widest px-2 py-1 rounded-full bg-ink-700/60 border border-white/5 text-fog-200"
+                        className="font-mono text-[10px] uppercase tracking-widest px-2 py-1 rounded-full bg-ink-700/60 border border-line-subtle/5 text-fog-200"
                       >
                         {t}
                       </span>
@@ -110,7 +110,7 @@ export function ModalInfo({ SelectedProject, closeModal }) {
               )}
             </div>
 
-            <div className="flex flex-wrap gap-3 mt-8 pt-6 border-t border-white/5">
+            <div className="flex flex-wrap gap-3 mt-8 pt-6 border-t border-line-subtle/5">
               {SelectedProject.demo && (
                 <a
                   href={SelectedProject.demo}
@@ -126,7 +126,7 @@ export function ModalInfo({ SelectedProject, closeModal }) {
                   href={SelectedProject.code}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-md border border-white/15 text-fog-100 font-semibold text-sm hover:border-accent-emerald hover:text-accent-emerald transition-colors"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-md border border-line-subtle/15 text-fog-100 font-semibold text-sm hover:border-accent-emerald hover:text-accent-emerald transition-colors"
                 >
                   <FiGithub size={16} /> Source code
                 </a>

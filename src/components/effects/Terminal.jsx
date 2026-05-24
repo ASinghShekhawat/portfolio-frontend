@@ -71,7 +71,7 @@ const Terminal = ({
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
       className={`card-surface overflow-hidden font-mono text-xs ${className}`}
     >
-      <div className="flex items-center gap-2 px-4 py-2 border-b border-white/5 bg-ink-900/70">
+      <div className="flex items-center gap-2 px-4 py-2 border-b border-line-subtle/5 bg-ink-900/70">
         <span className="h-2.5 w-2.5 rounded-full bg-[#FF5F57]" />
         <span className="h-2.5 w-2.5 rounded-full bg-[#FEBC2E]" />
         <span className="h-2.5 w-2.5 rounded-full bg-[#27C840]" />

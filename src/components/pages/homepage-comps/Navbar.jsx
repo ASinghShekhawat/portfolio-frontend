@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { Link } from "react-scroll";
 import { motion, useScroll, useSpring, AnimatePresence, LayoutGroup } from "framer-motion";
+import ThemeToggle from "../../../theme/ThemeToggle";
 
 const links = [
   { id: 1, link: "Home" },
@@ -67,7 +68,7 @@ const Navbar = () => {
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           isScrolled
-            ? "bg-ink-950/75 backdrop-blur-xl border-b border-white/5 shadow-[0_8px_30px_-12px_rgba(0,0,0,0.6)]"
+            ? "bg-ink-950/75 backdrop-blur-xl border-b border-line-subtle/5 shadow-[0_8px_30px_-12px_rgba(0,0,0,0.6)]"
             : "bg-transparent"
         }`}
       >
@@ -115,7 +116,7 @@ const Navbar = () => {
                       {isHL && (
                         <motion.span
                           layoutId="nav-indicator"
-                          className="absolute inset-0 -z-10 rounded-md bg-white/[0.06] border border-white/[0.08]"
+                          className="absolute inset-0 -z-10 rounded-md bg-line-subtle/[0.06] border border-line-subtle/[0.08]"
                           transition={{
                             type: "spring",
                             stiffness: 380,
@@ -149,11 +150,12 @@ const Navbar = () => {
           </LayoutGroup>
 
           <div className="hidden lg:flex items-center gap-3">
+            <ThemeToggle />
             <a
               href="/FullStack_Developer_Aditya_Resume.pdf"
               target="_blank"
               rel="noreferrer"
-              className="sheen font-mono text-xs uppercase tracking-widest px-4 py-2 rounded-md border border-white/10 text-fog-100 hover:border-accent-emerald/60 hover:text-accent-emerald transition-colors"
+              className="sheen font-mono text-xs uppercase tracking-widest px-4 py-2 rounded-md border border-fog-300/15 text-fog-100 hover:border-accent-emerald/60 hover:text-accent-emerald transition-colors"
             >
               Résumé
             </a>
@@ -218,6 +220,14 @@ const Navbar = () => {
               >
                 Download résumé
               </motion.a>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.05 * links.length + 0.18, duration: 0.4 }}
+                className="mt-2"
+              >
+                <ThemeToggle />
+              </motion.div>
             </ul>
           </motion.div>
         )}

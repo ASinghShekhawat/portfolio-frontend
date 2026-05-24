@@ -174,7 +174,7 @@ const Home = () => {
               href="/FullStack_Developer_Aditya_Resume.pdf"
               target="_blank"
               rel="noreferrer"
-              className="sheen inline-flex items-center gap-2 px-6 py-3 rounded-md border border-white/15 text-fog-100 font-semibold hover:border-accent-emerald hover:text-accent-emerald transition-colors"
+              className="sheen inline-flex items-center gap-2 px-6 py-3 rounded-md border border-line-subtle/15 text-fog-100 font-semibold hover:border-accent-emerald hover:text-accent-emerald transition-colors"
             >
               <HiOutlineDownload size={18} />
               Résumé
@@ -216,7 +216,7 @@ const Home = () => {
               style={{ maskImage: "linear-gradient(transparent 50%, #000 100%)" }}
             />
 
-            <div className="relative h-full w-full rounded-full overflow-hidden border border-white/10 bg-ink-900 shadow-card">
+            <div className="relative h-full w-full rounded-full overflow-hidden border border-line-subtle/10 bg-ink-900 shadow-card">
               <img
                 src="/images/profile.webp"
                 alt="Portrait of Aditya Shekhawat"
@@ -311,7 +311,7 @@ const Home = () => {
 
       {/* Dual marquee tech strip — pauses on hover, items scale */}
       <div className="absolute bottom-0 left-0 right-0">
-        <div className="relative w-full overflow-hidden border-y border-white/5 bg-ink-950/40 backdrop-blur-sm">
+        <div className="relative w-full overflow-hidden border-y border-line-subtle/5 bg-ink-950/40 backdrop-blur-sm">
           <div className="marquee-track flex w-max gap-12 animate-marquee whitespace-nowrap py-3">
             {[...marqueeRowA, ...marqueeRowA].map((t, i) => (
               <span
@@ -323,7 +323,7 @@ const Home = () => {
               </span>
             ))}
           </div>
-          <div className="marquee-track flex w-max gap-12 animate-marquee-reverse whitespace-nowrap py-3 border-t border-white/5">
+          <div className="marquee-track flex w-max gap-12 animate-marquee-reverse whitespace-nowrap py-3 border-t border-line-subtle/5">
             {[...marqueeRowB, ...marqueeRowB].map((t, i) => (
               <span
                 key={i}

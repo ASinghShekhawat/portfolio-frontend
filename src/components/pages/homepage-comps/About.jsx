@@ -128,7 +128,7 @@ const About = () => {
 
             <Reveal delay={0.2}>
               <Spotlight className="rounded-2xl">
-                <dl className="card-surface p-5 divide-y divide-white/5">
+                <dl className="card-surface p-5 divide-y divide-line-subtle/5">
                   {facts.map(({ k, v }) => (
                     <div
                       key={k}

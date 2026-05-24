@@ -57,7 +57,7 @@ const CertificateSlider = ({ certificates }) => {
                 <button
                   type="button"
                   onClick={() => setSelectedImage(certificate.image)}
-                  className="group block w-full overflow-hidden rounded-xl border border-white/5 bg-ink-800/60 hover:border-accent-emerald/30 hover:shadow-card-hover transition-all duration-500 cursor-zoom-in"
+                  className="group block w-full overflow-hidden rounded-xl border border-line-subtle/5 bg-ink-800/60 hover:border-accent-emerald/30 hover:shadow-card-hover transition-all duration-500 cursor-zoom-in"
                   aria-label="View certificate"
                 >
                   <div className="aspect-[4/3] overflow-hidden">
@@ -81,15 +81,15 @@ const CertificateSlider = ({ certificates }) => {
         setSelectedImage={setSelectedImage}
       />
 
-      {/* Light styling overrides for slick dots */}
+      {/* Light styling overrides for slick dots — theme-aware */}
       <style>{`
         .cert-slider .slick-dots li button:before {
-          color: #6B7785;
+          color: rgb(var(--c-fog-400));
           opacity: 0.5;
           font-size: 8px;
         }
         .cert-slider .slick-dots li.slick-active button:before {
-          color: #0DFC4B;
+          color: rgb(var(--c-accent-emerald));
           opacity: 1;
         }
         .cert-slider .slick-dots { bottom: -28px; }

@@ -64,8 +64,7 @@ const ScrollRail = () => {
         {/* Background line */}
         <span
           aria-hidden="true"
-          className="absolute right-[7px] top-0 bottom-0 w-px bg-white/8"
-          style={{ background: "rgba(255,255,255,0.07)" }}
+          className="absolute right-[7px] top-0 bottom-0 w-px bg-line-subtle/10"
         />
         {/* Progress line */}
         <motion.span

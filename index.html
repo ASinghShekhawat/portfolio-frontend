@@ -17,6 +17,19 @@
 
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
 
+    <!-- Theme bootstrap: must run before paint to prevent flash of wrong theme -->
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem("portfolio-theme");
+          var theme = stored === "athos" || stored === "porthos" ? stored : "porthos";
+          document.documentElement.setAttribute("data-theme", theme);
+        } catch (e) {
+          document.documentElement.setAttribute("data-theme", "porthos");
+        }
+      })();
+    </script>
+
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Aditya Shekhawat — Full Stack Engineer" />

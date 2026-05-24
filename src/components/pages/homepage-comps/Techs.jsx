@@ -210,7 +210,7 @@ const Techs = () => {
                       return (
                         <li
                           key={item}
-                          className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-ink-700/50 border border-white/5 text-fog-100 text-xs hover:border-accent-emerald/30 hover:bg-ink-700/80 transition-colors"
+                          className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-ink-700/50 border border-line-subtle/5 text-fog-100 text-xs hover:border-accent-emerald/30 hover:bg-ink-700/80 transition-colors"
                         >
                           {icon && (
                             <img

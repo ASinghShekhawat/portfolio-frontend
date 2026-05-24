@@ -9,7 +9,7 @@ const AboutSectionAbout = () => {
     >
       <div className="container-wide grid lg:grid-cols-[1fr_1.2fr] gap-10 lg:gap-16 items-center">
         <Reveal direction="right">
-          <div className="relative mx-auto w-full max-w-md aspect-[4/5] rounded-2xl overflow-hidden border border-white/10 shadow-card">
+          <div className="relative mx-auto w-full max-w-md aspect-[4/5] rounded-2xl overflow-hidden border border-line-subtle/10 shadow-card">
             <img
               src="/images/profile_1.webp"
               alt="Portrait of Aditya Shekhawat"

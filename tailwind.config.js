@@ -22,50 +22,51 @@ export default {
         "dark-green": "#8EFF8B",
         "light-gray": "#AEAEAE",
 
+        // All theme-aware via CSS custom properties. Use space-separated
+        // rgb() so Tailwind's <alpha-value> sugar still works.
         ink: {
-          950: "#07090C",
-          900: "#0B1014",
-          800: "#0F1419",
-          700: "#141A21",
-          600: "#1A222C",
-          500: "#222B37",
-          400: "#2C3645",
+          950: "rgb(var(--c-ink-950) / <alpha-value>)",
+          900: "rgb(var(--c-ink-900) / <alpha-value>)",
+          800: "rgb(var(--c-ink-800) / <alpha-value>)",
+          700: "rgb(var(--c-ink-700) / <alpha-value>)",
+          600: "rgb(var(--c-ink-600) / <alpha-value>)",
+          500: "rgb(var(--c-ink-500) / <alpha-value>)",
+          400: "rgb(var(--c-ink-400) / <alpha-value>)",
         },
         fog: {
-          50: "#F5F7FA",
-          100: "#E6EAF0",
-          200: "#C7CFDB",
-          300: "#9CA8B8",
-          400: "#6B7785",
-          500: "#4A5260",
+          50: "rgb(var(--c-fog-50) / <alpha-value>)",
+          100: "rgb(var(--c-fog-100) / <alpha-value>)",
+          200: "rgb(var(--c-fog-200) / <alpha-value>)",
+          300: "rgb(var(--c-fog-300) / <alpha-value>)",
+          400: "rgb(var(--c-fog-400) / <alpha-value>)",
+          500: "rgb(var(--c-fog-500) / <alpha-value>)",
         },
         accent: {
-          emerald: "#0DFC4B",
-          mint: "#8EFF8B",
-          cyan: "#06D6F4",
-          violet: "#A78BFA",
+          emerald: "rgb(var(--c-accent-emerald) / <alpha-value>)",
+          mint: "rgb(var(--c-accent-mint) / <alpha-value>)",
+          cyan: "rgb(var(--c-accent-cyan) / <alpha-value>)",
+          violet: "rgb(var(--c-accent-violet) / <alpha-value>)",
+        },
+        line: {
+          subtle: "rgb(var(--c-line-subtle) / <alpha-value>)",
+          DEFAULT: "rgb(var(--c-line) / <alpha-value>)",
         },
       },
 
       backgroundImage: {
-        "gradient-brand":
-          "linear-gradient(135deg, #0DFC4B 0%, #06D6F4 100%)",
-        "gradient-brand-soft":
-          "linear-gradient(135deg, rgba(13,252,75,0.18) 0%, rgba(6,214,244,0.18) 100%)",
+        "gradient-brand": "var(--gradient-brand)",
+        "gradient-brand-soft": "var(--gradient-brand-soft)",
         "gradient-radial":
           "radial-gradient(circle at center, var(--tw-gradient-stops))",
-        "noise":
-          "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.06 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>\")",
+        noise: "var(--noise-bg)",
       },
 
       boxShadow: {
-        glow: "0 0 32px -4px rgba(13, 252, 75, 0.35)",
-        "glow-cyan": "0 0 32px -4px rgba(6, 214, 244, 0.35)",
-        "glow-lg": "0 0 80px -10px rgba(13, 252, 75, 0.45)",
-        card:
-          "0 1px 0 0 rgba(255,255,255,0.04) inset, 0 8px 32px -12px rgba(0,0,0,0.6)",
-        "card-hover":
-          "0 1px 0 0 rgba(255,255,255,0.08) inset, 0 24px 48px -16px rgba(13,252,75,0.18), 0 8px 32px -12px rgba(0,0,0,0.7)",
+        glow: "var(--shadow-glow)",
+        "glow-cyan": "var(--shadow-glow-cyan)",
+        "glow-lg": "var(--shadow-glow-lg)",
+        card: "var(--shadow-card)",
+        "card-hover": "var(--shadow-card-hover)",
       },
 
       borderRadius: {

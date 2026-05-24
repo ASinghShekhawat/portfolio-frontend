@@ -37,13 +37,13 @@ const CertificateModal = ({ selectedImage, setSelectedImage }) => {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.96 }}
             transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-            className="relative max-w-4xl w-full max-h-[88vh] rounded-xl overflow-hidden border border-white/10 bg-ink-900 shadow-card-hover"
+            className="relative max-w-4xl w-full max-h-[88vh] rounded-xl overflow-hidden border border-line-subtle/10 bg-ink-900 shadow-card-hover"
           >
             <button
               type="button"
               onClick={() => setSelectedImage(null)}
               aria-label="Close certificate preview"
-              className="absolute top-3 right-3 inline-grid h-9 w-9 place-items-center rounded-full bg-ink-950/70 border border-white/10 text-fog-100 hover:text-accent-emerald hover:border-accent-emerald/50 backdrop-blur-sm transition-colors"
+              className="absolute top-3 right-3 inline-grid h-9 w-9 place-items-center rounded-full bg-ink-950/70 border border-line-subtle/10 text-fog-100 hover:text-accent-emerald hover:border-accent-emerald/50 backdrop-blur-sm transition-colors"
             >
               <FiX size={16} />
             </button>

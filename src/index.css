@@ -4,30 +4,173 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ----------------------------------------------------------------------
+   Theme tokens — Porthos (dark, default) and Athos (light, soothing)
+   Every Tailwind color reads from these CSS custom properties via
+   `rgb(var(--c-x) / <alpha-value>)` in tailwind.config.js, so swapping
+   `data-theme` on <html> retones the whole site.
+   ---------------------------------------------------------------------- */
+:root,
+[data-theme="porthos"] {
+    /* Porthos — the original signature look. Deep ink base + neon emerald
+       and bright cyan accents. Striking, vivid, unapologetically vibrant. */
+    --c-ink-950: 7 9 12;
+    --c-ink-900: 11 16 20;
+    --c-ink-800: 15 20 25;
+    --c-ink-700: 20 26 33;
+    --c-ink-600: 26 34 44;
+    --c-ink-500: 34 43 55;
+    --c-ink-400: 44 54 69;
+
+    --c-fog-50: 245 247 250;
+    --c-fog-100: 230 234 240;
+    --c-fog-200: 199 207 219;
+    --c-fog-300: 156 168 184;
+    --c-fog-400: 107 119 133;
+    --c-fog-500: 74 82 96;
+
+    --c-accent-emerald: 13 252 75;
+    --c-accent-mint: 142 255 139;
+    --c-accent-cyan: 6 214 244;
+    --c-accent-violet: 167 139 250;
+
+    --c-line-subtle: 255 255 255;
+    --c-line: 255 255 255;
+
+    --gradient-brand: linear-gradient(135deg, rgb(13 252 75) 0%, rgb(6 214 244) 100%);
+    --gradient-brand-soft: linear-gradient(135deg, rgba(13,252,75,0.18) 0%, rgba(6,214,244,0.18) 100%);
+
+    --shadow-glow: 0 0 32px -4px rgba(13, 252, 75, 0.35);
+    --shadow-glow-cyan: 0 0 32px -4px rgba(6, 214, 244, 0.35);
+    --shadow-glow-lg: 0 0 80px -10px rgba(13, 252, 75, 0.45);
+    --shadow-card:
+        0 1px 0 0 rgba(255, 255, 255, 0.04) inset,
+        0 8px 32px -12px rgba(0, 0, 0, 0.6);
+    --shadow-card-hover:
+        0 1px 0 0 rgba(255, 255, 255, 0.08) inset,
+        0 24px 48px -16px rgba(13, 252, 75, 0.18),
+        0 8px 32px -12px rgba(0, 0, 0, 0.7);
+
+    --glass-bg: rgba(15, 20, 25, 0.6);
+    --glass-border: rgba(255, 255, 255, 0.06);
+
+    --sheen-base: rgba(255, 255, 255, 0.08);
+    --sheen-tint: rgba(13, 252, 75, 0.22);
+    --sheen-blend: overlay;
+
+    --selection-bg: rgba(13, 252, 75, 0.35);
+    --selection-fg: rgb(7 9 12);
+
+    --conic-stop-a: rgba(13, 252, 75, 0.6);
+    --conic-stop-b: rgba(6, 214, 244, 0.6);
+    --border-gradient-stops: linear-gradient(135deg, rgba(13,252,75,0.5), rgba(6,214,244,0) 40%, rgba(167,139,250,0.4));
+
+    --noise-bg: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.06 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    --noise-opacity: 0.5;
+    --noise-blend: overlay;
+
+    --grid-line: rgba(255, 255, 255, 0.05);
+    --vignette-color: rgba(7, 9, 12, 0.6);
+
+    --shimmer-stop-base: 245 247 250;
+}
+
+[data-theme="athos"] {
+    /* Athos — warm parchment · sage · sea-teal.
+       Eye-comfort palette: distinctly tinted, well below pure white.
+       Inverted scale: lower number = lighter (paper), higher = deeper. */
+    --c-ink-950: 235 226 207;   /* warm parchment — definitely not white */
+    --c-ink-900: 226 215 193;   /* page surface */
+    --c-ink-800: 215 202 178;   /* card surface */
+    --c-ink-700: 197 183 157;   /* elevated */
+    --c-ink-600: 174 158 130;   /* divider */
+    --c-ink-500: 142 127 100;   /* warm gray */
+    --c-ink-400: 108 95 73;     /* highest contrast */
+
+    /* Text — fog-50 is darkest (primary), fog-500 is lightest (muted).
+       Warm-walnut tones rather than cool slate to harmonize with parchment. */
+    --c-fog-50: 42 35 24;        /* warm walnut */
+    --c-fog-100: 60 51 38;
+    --c-fog-200: 85 73 56;
+    --c-fog-300: 117 103 81;
+    --c-fog-400: 150 134 107;
+    --c-fog-500: 178 162 134;
+
+    /* Desaturated, calmer accents — slightly deeper to read on parchment */
+    --c-accent-emerald: 64 122 84;   /* moss */
+    --c-accent-mint: 118 168 138;
+    --c-accent-cyan: 56 116 132;     /* sea-teal */
+    --c-accent-violet: 124 102 162;  /* heather */
+
+    --c-line-subtle: 42 35 24;
+    --c-line: 60 51 38;
+
+    --gradient-brand: linear-gradient(135deg, rgb(64 122 84) 0%, rgb(56 116 132) 100%);
+    --gradient-brand-soft: linear-gradient(135deg, rgba(64,122,84,0.14) 0%, rgba(56,116,132,0.14) 100%);
+
+    /* Softer warm drop shadows — no glow on light */
+    --shadow-glow: 0 8px 24px -8px rgba(64, 122, 84, 0.20);
+    --shadow-glow-cyan: 0 8px 24px -8px rgba(56, 116, 132, 0.18);
+    --shadow-glow-lg: 0 18px 48px -12px rgba(64, 122, 84, 0.24);
+    --shadow-card:
+        0 1px 0 0 rgba(255, 252, 240, 0.55) inset,
+        0 1px 3px 0 rgba(42, 30, 12, 0.06),
+        0 8px 28px -14px rgba(42, 30, 12, 0.14);
+    --shadow-card-hover:
+        0 1px 0 0 rgba(255, 252, 240, 0.65) inset,
+        0 16px 48px -16px rgba(64, 122, 84, 0.18),
+        0 4px 12px -4px rgba(42, 30, 12, 0.14);
+
+    --glass-bg: rgba(240, 232, 214, 0.72);
+    --glass-border: rgba(42, 30, 12, 0.10);
+
+    --sheen-base: rgba(255, 250, 235, 0.35);
+    --sheen-tint: rgba(64, 122, 84, 0.14);
+    --sheen-blend: soft-light;
+
+    --selection-bg: rgba(64, 122, 84, 0.28);
+    --selection-fg: rgb(42 35 24);
+
+    --conic-stop-a: rgba(64, 122, 84, 0.45);
+    --conic-stop-b: rgba(56, 116, 132, 0.45);
+    --border-gradient-stops: linear-gradient(135deg, rgba(64,122,84,0.45), rgba(56,116,132,0) 40%, rgba(124,102,162,0.35));
+
+    --noise-bg: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.06 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    --noise-opacity: 0.6;
+    --noise-blend: multiply;
+
+    --grid-line: rgba(42, 30, 12, 0.06);
+    --vignette-color: rgba(220, 205, 175, 0.55);
+
+    --shimmer-stop-base: 42 35 24;
+}
+
 @layer base {
     html {
         font-family: 'Raleway', system-ui, sans-serif;
-        /* No native smooth-scroll — react-scroll handles smoothing
-           with a snappier custom easing. Stacking both feels sluggish. */
-        background-color: #07090C;
+        background-color: rgb(var(--c-ink-950));
         color-scheme: dark;
+        transition: background-color 0.6s ease, color 0.6s ease;
+    }
+    html[data-theme="athos"] {
+        color-scheme: light;
     }
 
     body {
-        background-color: #07090C;
-        color: #F5F7FA;
+        background-color: rgb(var(--c-ink-950));
+        color: rgb(var(--c-fog-50));
         -webkit-font-smoothing: antialiased;
         text-rendering: optimizeLegibility;
+        transition: background-color 0.6s ease, color 0.6s ease;
     }
 
     ::selection {
-        background-color: rgba(13, 252, 75, 0.35);
-        color: #07090C;
+        background-color: var(--selection-bg);
+        color: var(--selection-fg);
     }
 
-    /* Focus rings */
     :focus-visible {
-        outline: 2px solid #0DFC4B;
+        outline: 2px solid rgb(var(--c-accent-emerald));
         outline-offset: 3px;
         border-radius: 4px;
     }
@@ -41,7 +184,6 @@
         }
     }
 
-    /* Custom cursor — only hide the native cursor on fine-pointer devices */
     @media (pointer: fine) {
         html.custom-cursor-active,
         html.custom-cursor-active * {
@@ -50,13 +192,76 @@
     }
 }
 
+/* ----------------------------------------------------------------------
+   Athos-specific surface tweaks. The `/X` alpha used on dark surfaces
+   tends to wash out on a cream base — override to give cards more
+   presence + a soft warm shadow.
+   ---------------------------------------------------------------------- */
+[data-theme="athos"] .card-surface {
+    background-color: rgb(var(--c-ink-900) / 0.95);
+    border-color: rgb(var(--c-ink-700) / 0.55);
+    box-shadow:
+        0 1px 0 0 rgba(255, 255, 255, 0.7) inset,
+        0 1px 3px 0 rgba(40, 30, 18, 0.05),
+        0 4px 16px -8px rgba(40, 30, 18, 0.08);
+}
+[data-theme="athos"] .card-surface:hover {
+    border-color: rgb(var(--c-accent-emerald) / 0.35) !important;
+}
+[data-theme="athos"] .glass {
+    background: rgba(255, 253, 246, 0.78);
+    border-color: rgba(40, 30, 18, 0.10);
+    box-shadow:
+        0 1px 0 0 rgba(255, 255, 255, 0.9) inset,
+        0 6px 24px -10px rgba(40, 30, 18, 0.12);
+}
+
+/* Make ink-700 chips (tech pills, etc.) visibly distinct on cream */
+[data-theme="athos"] .bg-ink-700\/50,
+[data-theme="athos"] .bg-ink-700\/60,
+[data-theme="athos"] .bg-ink-700\/70,
+[data-theme="athos"] .bg-ink-700\/80 {
+    background-color: rgb(var(--c-ink-700) / 0.45);
+}
+
+/* Marquee strip — match the page tint, not transparent dark */
+[data-theme="athos"] .marquee-track {
+    color: rgb(var(--c-fog-200));
+}
+
+/* Sheen mix-blend goes the right direction on cream */
+[data-theme="athos"] .sheen::after {
+    mix-blend-mode: soft-light;
+}
+
+/* Tone down the AuroraBackground orbs so they don't add brightness on
+   the already-warm parchment base. */
+[data-theme="athos"] .bg-accent-emerald\/15 {
+    background-color: rgb(var(--c-accent-emerald) / 0.06);
+}
+[data-theme="athos"] .bg-accent-cyan\/10 {
+    background-color: rgb(var(--c-accent-cyan) / 0.05);
+}
+[data-theme="athos"] .bg-accent-violet\/10 {
+    background-color: rgb(var(--c-accent-violet) / 0.05);
+}
+
+/* Custom cursor uses mix-blend-difference which still works on light
+   (light becomes dark on cream); no override needed. */
+
+/* Spotlight border highlight color in light */
+[data-theme="athos"] {
+    --spot-border-default: rgba(56, 134, 92, 0.55);
+    --spot-fill-default: rgba(56, 134, 92, 0.10);
+}
+
 @layer components {
     .container-wide {
         @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8;
     }
 
     .text-gradient {
-        background: linear-gradient(135deg, #0DFC4B 0%, #06D6F4 100%);
+        background: var(--gradient-brand);
         -webkit-background-clip: text;
         background-clip: text;
         color: transparent;
@@ -65,12 +270,12 @@
     .text-shimmer {
         background: linear-gradient(
             110deg,
-            #F5F7FA 0%,
-            #F5F7FA 38%,
-            #0DFC4B 50%,
-            #06D6F4 58%,
-            #F5F7FA 70%,
-            #F5F7FA 100%
+            rgb(var(--shimmer-stop-base)) 0%,
+            rgb(var(--shimmer-stop-base)) 38%,
+            rgb(var(--c-accent-emerald)) 50%,
+            rgb(var(--c-accent-cyan)) 58%,
+            rgb(var(--shimmer-stop-base)) 70%,
+            rgb(var(--shimmer-stop-base)) 100%
         );
         background-size: 200% 100%;
         -webkit-background-clip: text;
@@ -92,8 +297,8 @@
         background: conic-gradient(
             from var(--angle, 0deg),
             transparent 0%,
-            rgba(13, 252, 75, 0.6) 25%,
-            rgba(6, 214, 244, 0.6) 50%,
+            var(--conic-stop-a) 25%,
+            var(--conic-stop-b) 50%,
             transparent 75%
         );
         -webkit-mask:
@@ -124,21 +329,21 @@
     }
 
     .modalCard {
-        box-shadow: 0 0 1rem 0 #86ff4b87;
+        box-shadow: 0 0 1rem 0 rgb(var(--c-accent-emerald) / 0.45);
     }
 
     .glass {
-        background: rgba(15, 20, 25, 0.6);
+        background: var(--glass-bg);
         backdrop-filter: blur(14px) saturate(140%);
         -webkit-backdrop-filter: blur(14px) saturate(140%);
-        border: 1px solid rgba(255, 255, 255, 0.06);
+        border: 1px solid var(--glass-border);
     }
 
     .card-surface {
-        @apply relative overflow-hidden rounded-2xl bg-ink-800/60 border border-white/5 backdrop-blur-sm;
+        @apply relative overflow-hidden rounded-2xl bg-ink-800/60 backdrop-blur-sm;
+        border: 1px solid rgb(var(--c-line-subtle) / 0.06);
     }
 
-    /* Sheen sweep — diagonal light band that sweeps across the surface on hover */
     .sheen {
         position: relative;
         isolation: isolate;
@@ -153,9 +358,9 @@
             115deg,
             transparent 0%,
             transparent 40%,
-            rgba(255, 255, 255, 0.08) 48%,
-            rgba(13, 252, 75, 0.18) 50%,
-            rgba(255, 255, 255, 0.08) 52%,
+            var(--sheen-base) 48%,
+            var(--sheen-tint) 50%,
+            var(--sheen-base) 52%,
             transparent 60%,
             transparent 100%
         );
@@ -163,7 +368,7 @@
         background-position: 200% 0;
         opacity: 0;
         transition: background-position 0.9s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s;
-        mix-blend-mode: overlay;
+        mix-blend-mode: var(--sheen-blend);
         z-index: 1;
     }
     .sheen:hover::after,
@@ -172,7 +377,6 @@
         opacity: 1;
     }
 
-    /* Animated underline that draws from left on hover */
     .underline-draw {
         position: relative;
         display: inline-block;
@@ -184,7 +388,7 @@
         right: 0;
         bottom: -3px;
         height: 1px;
-        background: linear-gradient(90deg, #0DFC4B, #06D6F4);
+        background: var(--gradient-brand);
         transform: scaleX(0);
         transform-origin: 0% 50%;
         transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
@@ -193,7 +397,6 @@
         transform: scaleX(1);
     }
 
-    /* Marquee with pause-on-hover */
     .marquee-track:hover .marquee-item {
         animation-play-state: paused;
     }
@@ -201,11 +404,10 @@
         transition: color 0.3s, transform 0.3s;
     }
     .marquee-item:hover {
-        color: #0DFC4B;
+        color: rgb(var(--c-accent-emerald));
         transform: scale(1.08);
     }
 
-    /* Gradient border (mask trick — works in all modern browsers) */
     .border-gradient {
         position: relative;
     }
@@ -215,7 +417,7 @@
         inset: 0;
         border-radius: inherit;
         padding: 1px;
-        background: linear-gradient(135deg, rgba(13,252,75,0.5), rgba(6,214,244,0.0) 40%, rgba(167,139,250,0.4));
+        background: var(--border-gradient-stops);
         -webkit-mask:
             linear-gradient(#000 0 0) content-box,
             linear-gradient(#000 0 0);

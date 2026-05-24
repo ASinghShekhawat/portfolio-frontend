@@ -32,7 +32,7 @@ const MobileSocialLinks = () => {
             target="_blank"
             rel="noreferrer"
             aria-label={label}
-            className="inline-flex items-center gap-2 px-3 py-2 rounded-md bg-ink-800/60 border border-white/10 text-fog-200 text-sm hover:text-accent-emerald hover:border-accent-emerald/50 transition-colors"
+            className="inline-flex items-center gap-2 px-3 py-2 rounded-md bg-ink-800/60 border border-line-subtle/10 text-fog-200 text-sm hover:text-accent-emerald hover:border-accent-emerald/50 transition-colors"
           >
             {icon}
             <span className="font-medium">{label}</span>

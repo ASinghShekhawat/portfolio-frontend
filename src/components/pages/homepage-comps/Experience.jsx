@@ -165,7 +165,7 @@ const Experience = () => {
                         {exp.tags.map((t) => (
                           <span
                             key={t}
-                            className="font-mono text-[10px] uppercase tracking-widest px-2 py-1 rounded-full bg-ink-700/60 border border-white/5 text-fog-200"
+                            className="font-mono text-[10px] uppercase tracking-widest px-2 py-1 rounded-full bg-ink-700/60 border border-line-subtle/5 text-fog-200"
                           >
                             {t}
                           </span>
