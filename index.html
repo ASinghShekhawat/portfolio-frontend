@@ -22,7 +22,7 @@
       (function () {
         try {
           var stored = localStorage.getItem("portfolio-theme");
-          var theme = stored === "athos" || stored === "porthos" ? stored : "porthos";
+          var theme = stored === "athos" || stored === "porthos" || stored === "aramis" ? stored : "porthos";
           document.documentElement.setAttribute("data-theme", theme);
         } catch (e) {
           document.documentElement.setAttribute("data-theme", "porthos");

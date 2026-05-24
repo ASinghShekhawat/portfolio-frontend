@@ -1,9 +1,17 @@
+import { useTheme } from "../theme/ThemeProvider";
+import CosmosBackground from "./CosmosBackground";
+
 /**
  * Ambient background — blurred gradient orbs plus a subtle grid overlay
  * and noise texture. Theme-aware: uses CSS custom properties so it
- * retones cleanly between Porthos (dark) and Athos (light).
+ * retones cleanly between Porthos (dark) and Athos (light). For Aramis
+ * (Interstellar) the orbs are replaced by a cosmic scene with stars,
+ * planets, and a wormhole tint — see CosmosBackground.
  */
 const AuroraBackground = () => {
+  const { theme } = useTheme();
+  if (theme === "aramis") return <CosmosBackground />;
+
   return (
     <div
       aria-hidden="true"

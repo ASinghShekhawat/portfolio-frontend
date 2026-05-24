@@ -162,6 +162,10 @@
         -webkit-font-smoothing: antialiased;
         text-rendering: optimizeLegibility;
         transition: background-color 0.6s ease, color 0.6s ease;
+        /* Form a stacking context so fixed `-z-10` backgrounds
+           (Aurora / Cosmos) paint above body's own bg-color rather
+           than behind it. Without this, the body bg covers them. */
+        isolation: isolate;
     }
 
     ::selection {
@@ -190,6 +194,73 @@
             cursor: none !important;
         }
     }
+}
+
+[data-theme="aramis"] {
+    /* Aramis — Interstellar. Deep-space vacuum, Gargantua's accretion gold,
+       and Endurance ice-blue. Darker and more cosmic than Porthos: warm
+       starlight text floating on a near-black void; gold + ice gradient. */
+    --c-ink-950: 4 5 8;          /* deep space */
+    --c-ink-900: 8 10 14;        /* page surface */
+    --c-ink-800: 13 16 22;       /* card surface */
+    --c-ink-700: 19 24 32;       /* elevated */
+    --c-ink-600: 27 33 44;       /* divider */
+    --c-ink-500: 36 44 58;
+    --c-ink-400: 48 58 75;
+
+    /* Text — warm starlight rather than cool slate */
+    --c-fog-50: 247 240 228;
+    --c-fog-100: 232 224 210;
+    --c-fog-200: 202 191 173;
+    --c-fog-300: 158 148 132;
+    --c-fog-400: 110 102 90;
+    --c-fog-500: 78 72 64;
+
+    /* Accents — accretion gold + Endurance ice-blue + wormhole violet */
+    --c-accent-emerald: 245 184 79;
+    --c-accent-mint: 255 213 130;
+    --c-accent-cyan: 122 196 232;
+    --c-accent-violet: 156 138 220;
+
+    --c-line-subtle: 255 255 255;
+    --c-line: 255 255 255;
+
+    --gradient-brand: linear-gradient(135deg, rgb(245 184 79) 0%, rgb(122 196 232) 100%);
+    --gradient-brand-soft: linear-gradient(135deg, rgba(245,184,79,0.18) 0%, rgba(122,196,232,0.18) 100%);
+
+    --shadow-glow: 0 0 32px -4px rgba(245, 184, 79, 0.38);
+    --shadow-glow-cyan: 0 0 32px -4px rgba(122, 196, 232, 0.32);
+    --shadow-glow-lg: 0 0 90px -10px rgba(245, 184, 79, 0.48);
+    --shadow-card:
+        0 1px 0 0 rgba(255, 255, 255, 0.03) inset,
+        0 12px 36px -14px rgba(0, 0, 0, 0.8);
+    --shadow-card-hover:
+        0 1px 0 0 rgba(255, 255, 255, 0.07) inset,
+        0 24px 56px -16px rgba(245, 184, 79, 0.22),
+        0 8px 32px -12px rgba(0, 0, 0, 0.85);
+
+    --glass-bg: rgba(8, 10, 14, 0.65);
+    --glass-border: rgba(245, 184, 79, 0.08);
+
+    --sheen-base: rgba(255, 255, 255, 0.06);
+    --sheen-tint: rgba(245, 184, 79, 0.24);
+    --sheen-blend: overlay;
+
+    --selection-bg: rgba(245, 184, 79, 0.35);
+    --selection-fg: rgb(4 5 8);
+
+    --conic-stop-a: rgba(245, 184, 79, 0.6);
+    --conic-stop-b: rgba(122, 196, 232, 0.55);
+    --border-gradient-stops: linear-gradient(135deg, rgba(245,184,79,0.55), rgba(122,196,232,0) 40%, rgba(156,138,220,0.4));
+
+    --noise-bg: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.95' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.05 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    --noise-opacity: 0.45;
+    --noise-blend: overlay;
+
+    --grid-line: rgba(245, 184, 79, 0.05);
+    --vignette-color: rgba(4, 5, 8, 0.75);
+
+    --shimmer-stop-base: 247 240 228;
 }
 
 /* ----------------------------------------------------------------------
@@ -430,6 +501,78 @@
     .ring-brand {
         @apply ring-1 ring-accent-emerald/20;
     }
+}
+
+/* ----------------------------------------------------------------------
+   Aramis (Interstellar) cosmic background — keyframes and the shooting
+   star utility. Star twinkle pulses the whole layer's opacity; float
+   gives planets a gentle bob; spin drifts the wormhole tint; shoot
+   sends a brief comet streak across the void.
+   ---------------------------------------------------------------------- */
+@keyframes cosmos-twinkle {
+    0%, 100% { opacity: 0.45; }
+    50% { opacity: 1; }
+}
+@keyframes cosmos-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+@keyframes cosmos-spin {
+    to { transform: rotate(360deg); }
+}
+@keyframes cosmos-shoot {
+    0%   { transform: translate(0, 0) rotate(-22deg); opacity: 0; }
+    2%   { opacity: 1; }
+    14%  { transform: translate(-720px, 290px) rotate(-22deg); opacity: 0; }
+    100% { opacity: 0; }
+}
+
+.cosmos-shoot {
+    position: absolute;
+    width: 140px;
+    height: 1.5px;
+    border-radius: 999px;
+    background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 240, 210, 0.6) 60%,
+        rgba(255, 255, 255, 1) 100%
+    );
+    filter: drop-shadow(0 0 6px rgba(255, 224, 160, 0.8));
+    opacity: 0;
+    animation: cosmos-shoot 14s ease-out infinite;
+    pointer-events: none;
+}
+
+/* Grand activation streak — fires once when Aramis is selected. Starts
+   off-screen top-right and crosses the whole viewport diagonally with a
+   long trail and a bright gold flare. */
+@keyframes cosmos-shoot-grand {
+    0%   { transform: translate(0, 0) rotate(-22deg); opacity: 0; }
+    4%   { opacity: 1; }
+    100% { transform: translate(-140vw, 56vw) rotate(-22deg); opacity: 0; }
+}
+
+.cosmos-shoot-grand {
+    position: absolute;
+    top: -4vh;
+    left: 105vw;
+    width: 320px;
+    height: 2.5px;
+    border-radius: 999px;
+    background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 213, 130, 0.5) 50%,
+        rgba(255, 240, 210, 0.95) 88%,
+        rgba(255, 255, 255, 1) 100%
+    );
+    filter: drop-shadow(0 0 14px rgba(255, 213, 130, 0.95))
+            drop-shadow(0 0 28px rgba(245, 184, 79, 0.6));
+    opacity: 0;
+    animation: cosmos-shoot-grand 5.5s cubic-bezier(0.25, 0.7, 0.35, 1) forwards;
+    pointer-events: none;
+    z-index: 1;
 }
 
 @layer utilities {

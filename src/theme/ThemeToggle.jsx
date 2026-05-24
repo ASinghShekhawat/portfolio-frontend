@@ -1,10 +1,11 @@
 import { motion, LayoutGroup } from "framer-motion";
 import { useTheme } from "./ThemeProvider";
-import { FiMoon, FiSun } from "react-icons/fi";
+import { FiMoon, FiSun, FiStar } from "react-icons/fi";
 
 const OPTIONS = [
   { id: "athos", label: "Athos", icon: FiSun },
   { id: "porthos", label: "Porthos", icon: FiMoon },
+  { id: "aramis", label: "Aramis", icon: FiStar },
 ];
 
 /**
