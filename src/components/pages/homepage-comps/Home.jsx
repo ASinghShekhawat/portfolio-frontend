@@ -89,7 +89,7 @@ const Home = () => {
     <section
       name="Home"
       id="Home"
-      className="relative w-full min-h-[100svh] flex items-center pt-24 md:pt-0 pb-32 md:pb-24 overflow-hidden"
+      className="relative w-full min-h-[100svh] flex items-center pt-24 pb-32 md:pb-24 overflow-hidden"
     >
       <div className="container-wide grid md:grid-cols-[1.15fr_0.85fr] gap-10 md:gap-12 items-center w-full">
         {/* Text */}
